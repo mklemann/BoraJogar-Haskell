@@ -29,24 +29,29 @@ getHomeR = do
             h1 {
                 color : green;
                 float: left;
+                margintop:20px;
             }
             img{
                 float: right;
                 widght:100px;
                 height:150px
             }
+            
         |]
         [whamlet|
             $maybe sessao <- sess    
                 Ola #{sessao}
             $nothing    
                 <h1 class>
-                    BEM VINDO AO BORA JOGAR!
+                    <center>
+                        BEM VINDO AO BORA JOGAR!
+            <br>            
             <ul>
                
                     <li>
                         <a href=@{UsuarioR}>
-                            Cadastrar Novo Usuario
+                            <button>
+                                Cadastrar Novo Usuario
                 $maybe _ <- sess 
                     <li>
                         <form action=@{LogoutR} method=post>
@@ -55,7 +60,8 @@ getHomeR = do
                 
                     <li>
                         <a href=@{LoginR}>
-                            Entrar
+                            <button>
+                                Entrar
                     
                
                <img src=@{StaticR imgs_boraJogar_jpg}>
