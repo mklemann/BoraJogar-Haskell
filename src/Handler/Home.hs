@@ -72,35 +72,22 @@ getHomeR = do
             <br>
             <br>
         <div>    
-            <ul>
+            <ul class="list-group">
                <br>
-                    <li>
+                    <li class="list-group-item">
                         <a href=@{UsuarioR}>
                             <button>
                                 Cadastrar Novo Usuario
                 $maybe _ <- sess 
-                    <li>
+                    <li class="list-group-item">
                         <form action=@{LogoutR} method=post>
                             <input type="submit" value="Sair">
                 $nothing
                 
-                    <li>
+                    <li class="list-group-item">
                         <a href=@{LoginR}>
                             <button>
                                 Entrar
                     
-                     <br>
-                    <br>
-                    <br>
-                     <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                        
-            <button onclick="teste()"  class="btn btn-primary">
-                OK
-            
         |]
 
