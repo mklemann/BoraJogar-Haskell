@@ -39,3 +39,5 @@
 /esporte/#EsporteId/perfil EsportePerfilR GET
 /esporte/#EsporteId/apagar EsporteApagarR POST
 /esporte/#EsporteId/alterar EsporteAlterarR GET POST
+
+/evento/#EsporteId/local EventoR      GET POST

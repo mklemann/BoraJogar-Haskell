@@ -45,6 +45,7 @@ import Handler.Login
 
 import Handler.HomeLogado
 
+import Handler.Evento
 import Handler.Esporte
 import Handler.Atleta
 import Handler.Local 

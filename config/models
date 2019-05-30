@@ -42,4 +42,4 @@ Evento
     espid           EsporteId
     localid         LocalId
     hora            Int
-    data            Int
+    data            Day
