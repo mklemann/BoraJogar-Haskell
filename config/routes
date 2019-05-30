@@ -1,0 +1,41 @@
+/static StaticR Static appStatic
+
+/favicon.ico FaviconR GET
+/robots.txt RobotsR GET
+
+/ HomeR GET
+/homelogado HomeLogadoR GET
+/page1 Page1R GET
+/page2 Page2R GET
+/page3 Page3R GET
+
+/login       LoginR     GET POST
+/logout      LogoutR    POST
+
+/admin       AdminR     GET
+
+/professor   ProfR      GET POST
+/professores TodosProfR GET
+
+
+
+
+/usuario  UsuarioR     GET POST
+
+/atleta AtletaR        GET POST
+/atletas TodosAtletasR GET
+/atleta/#AtletaId/perfil AtletaPerfilR GET
+/atleta/#AtletaId/apagar AtletaApagarR POST
+/atleta/#AtletaId/alterar AtletaAlteraR GET POST
+
+/local LocalR        GET POST
+/locais TodosLocaisR GET
+/local/#LocalId/perfil LocalPerfilR GET
+/local/#LocalId/apagar LocalApagarR POST
+/local/#LocalId/alterar LocalAlterarR GET POST
+
+/esporte EsporteR        GET POST
+/esportes TodosEsportesR GET
+/esporte/#EsporteId/perfil EsportePerfilR GET
+/esporte/#EsporteId/apagar EsporteApagarR POST
+/esporte/#EsporteId/alterar EsporteAlterarR GET POST

@@ -28,13 +28,29 @@ getHomeR = do
         toWidget [lucius|
             h1 {
                 color : green;
-                float: left;
-                margintop:20px;
+                
+                margin-top:80px;
             }
-            img{
+            #end{
                 float: right;
                 widght:100px;
-                height:150px
+                height:150px;
+            }
+            div{
+                align-items: center;
+                display: flex;
+                flex-direction:column;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            #init{
+                float:left;
+                widght:100px;
+                height:150px;
+            }
+          
+            ul{
+               flex-direction:column; 
             }
             
         |]
@@ -43,11 +59,21 @@ getHomeR = do
                 Ola #{sessao}
             $nothing    
                 <h1 class>
-                    <center>
-                        BEM VINDO AO BORA JOGAR!
-            <br>            
+                    <img src=@{StaticR imgs_boraJogar_jpg} id="init">
+                    
+                        Bem Vindo ao Bora Jogar
+                        
+                    <img src=@{StaticR imgs_boraJogar_jpg} id="end">        
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+        <div>    
             <ul>
-               
+               <br>
                     <li>
                         <a href=@{UsuarioR}>
                             <button>
@@ -63,8 +89,15 @@ getHomeR = do
                             <button>
                                 Entrar
                     
-               
-               <img src=@{StaticR imgs_boraJogar_jpg}>
+                     <br>
+                    <br>
+                    <br>
+                     <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
                         
             <button onclick="teste()"  class="btn btn-primary">
                 OK

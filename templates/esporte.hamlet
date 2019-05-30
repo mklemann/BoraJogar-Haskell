@@ -1,0 +1,26 @@
+<table>
+    <thead>
+        <tr>
+            <th>
+                Nome
+            <th>
+                Descricao
+            <th>
+                Participantes
+                
+    <tbody>
+        $forall (Entity espid esporte) <- esportes
+            <tr>
+                <td>
+                    <a href=@{EsportePerfilR espid}>
+                        #{esporteNome esporte}
+                <td>
+                    #{esporteDescricao esporte}
+                <td>
+                    #{esporteParticipantes esporte}
+                <td>
+                    <a href=@{EsporteAlterarR espid}>
+                        Editar
+                <td>
+                    <form action=@{EsporteApagarR espid} method=post>
+                        <input type="submit" value="X">

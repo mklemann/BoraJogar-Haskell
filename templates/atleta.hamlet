@@ -1,0 +1,30 @@
+<table>
+    <thead>
+        <tr>
+            <th>
+                NOME
+            <th>
+                Idade
+            <th>
+                CPF
+            <th>
+                Telefone
+                
+    <tbody>
+        $forall (Entity atlid atleta) <- atletas
+            <tr>
+                <td>
+                    <a href=@{AtletaPerfilR atlid}>
+                        #{atletaNome atleta}
+                <td>
+                    #{atletaIdade atleta}
+                <td>
+                    #{atletaCpf atleta}
+                <td>
+                    #{atletaTelefone atleta}
+                <td>
+                    <a href=@{AtletaAlteraR atlid}>
+                        Editar
+                <td>
+                    <form action=@{AtletaApagarR atlid} method=post>
+                        <input type="submit" value="X">

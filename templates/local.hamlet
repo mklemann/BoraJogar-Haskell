@@ -1,0 +1,26 @@
+<table>
+    <thead>
+        <tr>
+            <th>
+                Nome
+            <th>
+                Descricao
+            <th>
+                Endereco
+                
+    <tbody>
+        $forall (Entity locid local) <- locais
+            <tr>
+                <td>
+                    <a href=@{LocalPerfilR locid}>
+                        #{localNome local}
+                <td>
+                    #{localDescricao local}
+                <td>
+                    #{localEndereco local}
+                <td>
+                    <a href=@{LocalAlterarR locid}>
+                        Editar
+                <td>
+                    <form action=@{LocalApagarR locid} method=post>
+                        <input type="submit" value="X">
