@@ -28,7 +28,7 @@ getHomeR = do
         toWidget [lucius|
             h1 {
                 color : green;
-                
+                text-align: center;
                 margin-top:80px;
             }
             #end{
@@ -53,41 +53,43 @@ getHomeR = do
                flex-direction:column; 
             }
             
+            span{
+                align: center;
+            }
+            
         |]
         [whamlet|
             $maybe sessao <- sess    
                 Ola #{sessao}
             $nothing    
+            <div class="container">
                 <h1 class>
                     <img src=@{StaticR imgs_boraJogar_jpg} id="init">
                     
-                        Bem Vindo ao Bora Jogar
+                    <span>  Bem Vindo ao Bora Jogar
                         
                     <img src=@{StaticR imgs_boraJogar_jpg} id="end">        
             <br>
             <br>
             <br>
-            <br>
-            <br>
-            <br>
-            <br>
-        <div>    
-            <ul class="list-group">
-               <br>
-                    <li class="list-group-item">
-                        <a href=@{UsuarioR}>
-                            <button>
-                                Cadastrar Novo Usuario
-                $maybe _ <- sess 
-                    <li class="list-group-item">
-                        <form action=@{LogoutR} method=post>
-                            <input type="submit" value="Sair">
-                $nothing
-                
-                    <li class="list-group-item">
-                        <a href=@{LoginR}>
-                            <button>
-                                Entrar
-                    
+            
+                <div class="col-6">
+                    <ul class="list-group">
+                       <br>
+                            <li class="list-group-item">
+                                <a href=@{UsuarioR}>
+                                    <button>
+                                        Cadastrar Novo Usuario
+                        $maybe _ <- sess 
+                            <li class="list-group-item">
+                                <form action=@{LogoutR} method=post>
+                                    <input type="submit" value="Sair">
+                        $nothing
+                        
+                            <li class="list-group-item">
+                                <a href=@{LoginR}>
+                                    <button>
+                                        Entrar
+                        
         |]
 
