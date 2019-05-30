@@ -19,12 +19,28 @@ getLoginR = do
     (widget,enctype) <- generateFormPost formLogin
     msg <- getMessage
     defaultLayout $ do
+        toWidget [lucius|
+            #divCentral {
+                margin: 0 auto;
+                width: 300px;
+                height: 300px;
+            }
+            #devExterna{
+                align-items: center;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        |]
         [whamlet|
             $maybe mensagem <- msg
                 ^{mensagem}
-            <form action=@{LoginR} method=post>
-                ^{widget}
-                <input type="submit" value="entrar">
+            <div id="divExterna">
+                <div id="divCentral">
+                    <form action=@{LoginR} method=post>
+                        ^{widget}
+                        <input type="submit" value="entrar">
         |]
 
 
