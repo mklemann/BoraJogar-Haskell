@@ -22,9 +22,7 @@ getLoginR = do
     defaultLayout $ do
         
         addStylesheet $ StaticR css_bootstrap_css
-        toWidgetHead [julius|
-           
-        |]
+        
         
         toWidget [lucius|
             #divCentral {
@@ -53,6 +51,17 @@ getLoginR = do
                                 <form action=@{LoginR} method=post>
                                     ^{widget}
                                     <input type="submit" value="entrar">
+        
+        |]
+        
+        toWidgetHead [julius|
+            const div = document.getElementsByTagName("div");
+            
+            let teste = [];
+            teste = [...div];
+            
+            console.log(div[0])
+            console.log(div);
         |]
 
 
