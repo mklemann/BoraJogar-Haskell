@@ -40,6 +40,8 @@ getEventoR = do
     (widget,enctype) <- generateFormPost (formEvento Nothing)
     defaultLayout $ do
         [whamlet|
+            <a href=@{HomeLogadoR}>
+                <input type="submit" value="Voltar">
             <form action=@{EventoR} method=post>
                 ^{widget}
                 <input type="submit" value="Cadastrar">
