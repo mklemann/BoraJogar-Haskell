@@ -25,7 +25,8 @@ getAtletaR = do
     defaultLayout $ do
         [whamlet|
         <h1>
-            teste
+            <a href=@{HomeLogadoR}>
+                <input type="submit" value="Voltar">
             <form action=@{AtletaR} method=post>
                 ^{widget}
                 <input type="submit" value="Cadastrar">

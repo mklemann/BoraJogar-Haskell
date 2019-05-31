@@ -22,6 +22,7 @@ getLocalR = do
     (widget,enctype) <- generateFormPost (formLocal Nothing)
     defaultLayout $ do
         [whamlet|
+        
             <form action=@{LocalR} method=post>
                 ^{widget}
                 <input type="submit" value="Cadastrar">
