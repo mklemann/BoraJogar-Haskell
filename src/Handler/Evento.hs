@@ -6,48 +6,107 @@
 {-# LANGUAGE QuasiQuotes #-}
 module Handler.Evento where
 
--- import Import
+import Import
+import Database.Persist.Postgresql
+
+formEvento :: Maybe Evento -> Form Evento
+formEvento mEvento = renderBootstrap $ Evento 
+    <$> areq textField "Nome: " (fmap eventoNome mEvento)
+    <*> areq (selectField espLista) "Esporte: " (fmap eventoEspid mEvento) 
+    <*> areq (selectField locLista) "Local: " (fmap eventoLocalid mEvento)
+    <*> areq intField "Hora: " (fmap eventoHora mEvento)
+    <*> areq dayField "Data: " (fmap eventoData mEvento)
+    
 
 -- formEvento :: EsporteId -> Form Evento
--- formEvento espid = renderBootstrap $ Evento
+-- formEvento esporid = renderBootstrap $ Evento
 --     <$> areq textField "Nome: " Nothing
 --     <*> areq (selectField espLista) "Esporte: " Nothing
---     <*> pure espid
---     <*> areq dayField "Data: " Nothing
+--    <*> pure esporid
+--     <*> areq (selectField locLista) "Local: " Nothing
+--    <*> areq dayField "Data: " Nothing
 
--- espLista = do
---       entidades <- runDB $ selectList [] [Asc EsporteNome] 
---       optionsPairs $ fmap (\ent -> (esporteNome $ entityVal ent, entityKey ent)) entidades
+espLista = do
+      entidades <- runDB $ selectList [] [Asc EsporteNome] 
+      optionsPairs $ fmap (\ent -> (esporteNome $ entityVal ent, entityKey ent)) entidades
 
--- locLista = do
---       entidades <- runDB $ selectList [] [Asc LocalNome] 
---       optionsPairs $ fmap (\ent -> (localNome $ entityVal ent, entityKey ent)) entidades
+locLista = do
+      entidades <- runDB $ selectList [] [Asc LocalNome] 
+      optionsPairs $ fmap (\ent -> (localNome $ entityVal ent, entityKey ent)) entidades
 
 
--- getEventoR :: EsporteId -> Handler Html
--- getEventoR espid = do
---     runDB $ get404 espid
---     msg <- getMessage
---     (widget,enctype) <- generateFormPost (formEvento espid)
---     defaultLayout $ do
---         addStylesheet $ StaticR css_bootstrap_css
+getEventoR :: Handler Html
+getEventoR = do 
+    (widget,enctype) <- generateFormPost (formEvento Nothing)
+    defaultLayout $ do
+        [whamlet|
+            <form action=@{EventoR} method=post>
+                ^{widget}
+                <input type="submit" value="Cadastrar">
+        |]
+
+postEventoR :: Handler Html
+postEventoR = do
+    -- LE DO FORM
+    ((res,_),_) <- runFormPost (formEvento Nothing)
+    case res of
+        FormSuccess evento -> do
+            runDB $ insert evento
+            setMessage [shamlet|
+                <h2>
+                    EVENTO CADASTRADO COM SUCESSO!
+            |]
+            redirect HomeLogadoR
+        _ -> redirect HomeLogadoR
+    
+-- SELECT * FROM Esporte
+
+-- getTodosEventosR :: Handler Html
+-- getTodosEventosR = do 
+--     eventos <- runDB $ selectList [] [Asc EventoNome]
+--    defaultLayout $(whamletFile "templates/evento.hamlet")
+
+-- getEventoPerfilR :: EventoId -> Handler Html
+-- getEventoPerfilR evid = do 
+--     evento <- runDB $ get404 evid
+--     defaultLayout $ do 
 --         [whamlet|
---             $maybe mensagem <- msg
---                 ^{mensagem}
---             <form action=@{EventoR profid} method=post enctype=#{enctype}>
---                 ^{widget}
---                 <input type="submit" value="Cadastrar">
+--             <h1>
+--                 Nome #{eventoNome evento}
+--             <div>
+--                 Esporte: #{eventoEspid evento}
+--             <div>
+--                 Local: #{eventoLocalid evento}
+--             <div>
+--                 Hora: #{eventoHora evento}
+--             <div>
+--                 Data: #{eventoData evento}
 --         |]
 
--- postEventoR :: EsporteId -> Handler Html
--- postEventoR espid = do 
---     ((res,_),_) <- runFormPost (formEvento espid)
---     case res of 
---         FormSuccess evento -> do 
---             _ <- runDB $ insert evento
---             setMessage [shamlet|
---                 <h2>
---                     EVENTO CADASTRADO COM SUCESSO!
---             |]
---             redirect HomeLogadoR
---         _ -> redirect HomeR
+-- postEventoApagarR :: EventoId -> Handler Html
+-- postEventoApagarR evid = do
+--     runDB $ get404 evid
+--     runDB $ delete evid
+--     redirect TodosEventosR
+
+-- getEventoAlterarR :: EventoId -> Handler Html
+-- getEventoAlterarR evid = do
+--     evento <- runDB $ get404 evid
+--     (widget,enctype) <- generateFormPost (formEvento $ Just evento)
+--     defaultLayout $ do
+--         [whamlet|
+--             <form action=@{EventoAlterarR evid} method=post>
+--                 ^{widget}
+--                 <input type="submit" value="Atualizar">
+--         |]
+
+-- postEventoAlterarR :: EventoId -> Handler Html
+-- postEventoAlterarR evid = do
+--     evento <- runDB $ get404 evid
+--     -- LE DO FORM
+--     ((res,_),_) <- runFormPost (formEvento $ Just evento) 
+--     case res of
+--         FormSuccess eventoNovo -> do
+--             runDB $ replace evid eventoNovo
+--             redirect TodosEventosR
+--         _ -> redirect HomeLogadoR

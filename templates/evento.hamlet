@@ -1,0 +1,30 @@
+<table>
+    <thead>
+        <tr>
+            <th>
+                Nome
+            <th>
+                Espid
+            <th>
+                Localid
+            <th>
+                Hora
+            <th>
+                Data
+                
+    <tbody>
+        $forall (Entity evid evento) <- eventos
+            <tr>
+                <td>
+                    <a href=@{EventoPerfilR evid}>
+                        #{eventoNome evento}
+                <td>
+                    #{eventoEspid evento}
+                <td>
+                    #{eventoLocalid evento}
+                <td>
+                    <a href=@{EventoAlterarR evid}>
+                        Editar
+                <td>
+                    <form action=@{EventoApagarR evid} method=post>
+                        <input type="submit" value="X">

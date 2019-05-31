@@ -40,4 +40,4 @@
 /esporte/#EsporteId/apagar EsporteApagarR POST
 /esporte/#EsporteId/alterar EsporteAlterarR GET POST
 
-
+/evento EventoR  GET POST
