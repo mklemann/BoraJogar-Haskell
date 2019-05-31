@@ -73,29 +73,3 @@ getHomeLogadoR = do
             
         |]
 
-getPage1R :: Handler Html
-getPage1R = do 
-    defaultLayout $ do
-        [whamlet|
-            <h1>
-                PAGINA 1
-            
-            <a href=@{HomeR}>
-                Voltar
-        |]
-
-getPage2R :: Handler Html
-getPage2R = do 
-    defaultLayout $ do
-        [whamlet|
-            <h1>
-                PAGINA 2
-        |]
-
-getPage3R :: Handler Html
-getPage3R = do 
-    defaultLayout $ do
-        [whamlet|
-            <h1>
-                PAGINA 3
-        |]
