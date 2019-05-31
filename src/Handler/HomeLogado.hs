@@ -40,10 +40,10 @@ getHomeLogadoR = do
                
                 <li>
                     <a href=@{AtletaR}>
-                        Cadastro de atleta
+                        Cadastro de Atletas
                 <li>
                     <a href=@{TodosAtletasR}>
-                        Listar atletas
+                        Listar Atletas
                 <li>
                     <a href=@{LocalR}>
                         Cadastro de Locais
