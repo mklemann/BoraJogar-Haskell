@@ -7,6 +7,8 @@
                 Descricao
             <th>
                 Participantes
+            <a href=@{HomeLogadoR}>
+                <input type="submit" value="Voltar">
                 
     <tbody>
         $forall (Entity espid esporte) <- esportes

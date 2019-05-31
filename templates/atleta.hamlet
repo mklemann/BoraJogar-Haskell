@@ -9,6 +9,8 @@
                 CPF
             <th>
                 Telefone
+        <a href=@{HomeLogadoR}>
+            <input type="submit" value="Voltar">
                 
     <tbody>
         $forall (Entity atlid atleta) <- atletas
@@ -28,8 +30,5 @@
                 <td>
                     <form action=@{AtletaApagarR atlid} method=post>
                         <input type="submit" value="X">
-                <br>
-                <br>
-                <li>
-                    <a href=@{HomeLogadoR}>
-                        <input type="submit" value="Voltar">
+                
+        
