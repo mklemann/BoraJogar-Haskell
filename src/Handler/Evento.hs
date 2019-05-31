@@ -14,7 +14,7 @@ formEvento mEvento = renderBootstrap $ Evento
     <$> areq textField "Nome: " (fmap eventoNome mEvento)
     <*> areq (selectField espLista) "Esporte: " (fmap eventoEspid mEvento) 
     <*> areq (selectField locLista) "Local: " (fmap eventoLocalid mEvento)
-    <*> areq intField "Hora: " (fmap eventoHora mEvento)
+    <*> areq textField "Hora: " (fmap eventoHora mEvento)
     <*> areq dayField "Data: " (fmap eventoData mEvento)
     
 
@@ -63,11 +63,11 @@ postEventoR = do
     
 -- SELECT * FROM Esporte
 
--- getTodosEventosR :: Handler Html
--- getTodosEventosR = do 
---     eventos <- runDB $ selectList [] [Asc EventoNome]
---    defaultLayout $(whamletFile "templates/evento.hamlet")
-
+getTodosEventosR :: Handler Html
+getTodosEventosR = do 
+    eventos <- runDB $ selectList [] [Asc EventoNome]
+    defaultLayout $(whamletFile "templates/evento.hamlet")
+    
 -- getEventoPerfilR :: EventoId -> Handler Html
 -- getEventoPerfilR evid = do 
 --     evento <- runDB $ get404 evid
@@ -112,3 +112,24 @@ postEventoR = do
 --             runDB $ replace evid eventoNovo
 --             redirect TodosEventosR
 --         _ -> redirect HomeLogadoR
+
+-- <tbody>
+--         $forall (Entity evid evento) <- eventos
+--             <tr>
+--                 <td>
+--                     <a href=@{EventoPerfilR evid}>
+--                         #{eventoNome evento}
+--                 <td>
+--                     #{eventoEspid evento}
+--                 <td>
+--                     #{eventoLocalid evento}
+--                 <td>
+--                     #{eventoData evento}
+--                 <td>
+--                     #{eventoHora evento}
+--                 <td>
+--                     <a href=@{EventoAlterarR evid}>
+--                         Editar
+--                 <td>
+--                     <form action=@{EventoApagarR evid} method=post>
+--                         <input type="submit" value="X">

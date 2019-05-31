@@ -41,5 +41,5 @@ Evento
     nome            Text
     espid           EsporteId
     localid         LocalId
-    hora            Int
+    hora            Text
     data            Day

@@ -59,6 +59,9 @@ getHomeLogadoR = do
                 <li>
                     <a href=@{EventoR}>
                         Cadastro de Eventos
+                <li>
+                    <a href=@{TodosEventosR}>
+                        Listar Eventos
                 
                 $maybe _ <- sess 
                     <li>
