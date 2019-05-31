@@ -22,6 +22,8 @@ getEsporteR = do
     (widget,enctype) <- generateFormPost (formEsporte Nothing)
     defaultLayout $ do
         [whamlet|
+            <a href=@{HomeLogadoR}>
+                <input type="submit" value="Voltar">
             <form action=@{EsporteR} method=post>
                 ^{widget}
                 <input type="submit" value="Cadastrar">
