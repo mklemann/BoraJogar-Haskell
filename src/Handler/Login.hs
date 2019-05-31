@@ -23,16 +23,7 @@ getLoginR = do
         
         addStylesheet $ StaticR css_bootstrap_css
         toWidgetHead [julius|
-            var input1 = document.getElementById("hident2");
-            var inputs = document.getElementsByTagName("input");
-            var labels = document.getElementsByTagName('label');
-          
-            console.log(input1)
-            
-            var attDiv = document.createAttribute('class');
-            attDiv.value = 'form-control';
-        
-            input1.setAttributeNode(attDivs);
+           
         |]
         
         toWidget [lucius|
@@ -41,24 +32,24 @@ getLoginR = do
                 width: 300px;
                 height: 300px;
             }
-            #devExterna{
+            #divExterna{
                 align-items: center;
                 display: flex;
                 flex-direction: row;
                 flex-wrap: wrap;
                 justify-content: center;
             }
+            
         |]
         
         [whamlet|
             $maybe mensagem <- msg
                 ^{mensagem}
-                
-           <div class="jumbotron jumbotron-fluid">
-                <div class="container">
-                    <div id="divExterna">
-                        <div id="divCentral">
-                            <h4 class="h4">Entre com seus dados!
+            <div id="divExterna">
+                <div id="divCentral">
+                    <div class="card" style="width: 300px; height: 300px;">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Entre com seus dados!
                                 <form action=@{LoginR} method=post>
                                     ^{widget}
                                     <input type="submit" value="entrar">

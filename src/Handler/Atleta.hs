@@ -24,6 +24,8 @@ getAtletaR = do
     (widget,enctype) <- generateFormPost (formAtleta Nothing)
     defaultLayout $ do
         [whamlet|
+        <h1>
+            teste
             <form action=@{AtletaR} method=post>
                 ^{widget}
                 <input type="submit" value="Cadastrar">
