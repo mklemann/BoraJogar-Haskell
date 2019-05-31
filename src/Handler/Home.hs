@@ -20,11 +20,12 @@ getHomeR = do
         -- pasta: static/css/bootstrap.css
         -- / e . sao trocados por _
         addStylesheet $ StaticR css_bootstrap_css
+        
         toWidgetHead [julius|
-            function teste(){
-                alert("BORA JOGAR!");
-            }
+            const labels = document.getElementsByTagName('input');
+            console.log(labels)
         |]
+        
         toWidget [lucius|
             h1 {
                 color : green;

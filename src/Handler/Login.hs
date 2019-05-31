@@ -17,8 +17,24 @@ formLogin = renderBootstrap $ Usuario
 getLoginR :: Handler Html
 getLoginR = do 
     (widget,enctype) <- generateFormPost formLogin
+
     msg <- getMessage
     defaultLayout $ do
+        
+        addStylesheet $ StaticR css_bootstrap_css
+        toWidgetHead [julius|
+            var input1 = document.getElementById("hident2");
+            var inputs = document.getElementsByTagName("input");
+            var labels = document.getElementsByTagName('label');
+          
+            console.log(input1)
+            
+            var attDiv = document.createAttribute('class');
+            attDiv.value = 'form-control';
+        
+            input1.setAttributeNode(attDivs);
+        |]
+        
         toWidget [lucius|
             #divCentral {
                 margin: 0 auto;
@@ -33,14 +49,19 @@ getLoginR = do
                 justify-content: center;
             }
         |]
+        
         [whamlet|
             $maybe mensagem <- msg
                 ^{mensagem}
-            <div id="divExterna">
-                <div id="divCentral">
-                    <form action=@{LoginR} method=post>
-                        ^{widget}
-                        <input type="submit" value="entrar">
+                
+           <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                    <div id="divExterna">
+                        <div id="divCentral">
+                            <h4 class="h4">Entre com seus dados!
+                                <form action=@{LoginR} method=post>
+                                    ^{widget}
+                                    <input type="submit" value="entrar">
         |]
 
 
