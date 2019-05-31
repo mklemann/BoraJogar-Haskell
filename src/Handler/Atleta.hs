@@ -57,6 +57,8 @@ getAtletaPerfilR atlid = do
     atleta <- runDB $ get404 atlid
     defaultLayout $ do 
         [whamlet|
+            <a href=@{HomeLogadoR}>
+                <input type="submit" value="Voltar">
             <h1>
                 Atleta #{atletaNome atleta}
             <div>
@@ -79,6 +81,8 @@ getAtletaAlteraR atlid = do
     (widget,enctype) <- generateFormPost (formAtleta $ Just atleta)
     defaultLayout $ do
         [whamlet|
+            <a href=@{HomeLogadoR}>
+                <input type="submit" value="Voltar">
             <form action=@{AtletaAlteraR atlid} method=post>
                 ^{widget}
                 <input type="submit" value="Atualizar">

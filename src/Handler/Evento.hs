@@ -17,15 +17,6 @@ formEvento mEvento = renderBootstrap $ Evento
     <*> areq textField "Hora: " (fmap eventoHora mEvento)
     <*> areq dayField "Data: " (fmap eventoData mEvento)
     
-
--- formEvento :: EsporteId -> Form Evento
--- formEvento esporid = renderBootstrap $ Evento
---     <$> areq textField "Nome: " Nothing
---     <*> areq (selectField espLista) "Esporte: " Nothing
---    <*> pure esporid
---     <*> areq (selectField locLista) "Local: " Nothing
---    <*> areq dayField "Data: " Nothing
-
 espLista = do
       entidades <- runDB $ selectList [] [Asc EsporteNome] 
       optionsPairs $ fmap (\ent -> (esporteNome $ entityVal ent, entityKey ent)) entidades

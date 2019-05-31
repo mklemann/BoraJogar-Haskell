@@ -54,6 +54,8 @@ getLocalPerfilR locid = do
     local <- runDB $ get404 locid
     defaultLayout $ do 
         [whamlet|
+            <a href=@{HomeLogadoR}>
+                <input type="submit" value="Voltar">
             <h1>
                 Nome #{localNome local}
             <div>
@@ -74,6 +76,8 @@ getLocalAlterarR locid = do
     (widget,enctype) <- generateFormPost (formLocal $ Just local)
     defaultLayout $ do
         [whamlet|
+            <a href=@{HomeLogadoR}>
+                <input type="submit" value="Voltar">
             <form action=@{LocalAlterarR locid} method=post>
                 ^{widget}
                 <input type="submit" value="Atualizar">

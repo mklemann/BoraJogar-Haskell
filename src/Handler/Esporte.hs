@@ -54,6 +54,8 @@ getEsportePerfilR espid = do
     esporte <- runDB $ get404 espid
     defaultLayout $ do 
         [whamlet|
+            <a href=@{HomeLogadoR}>
+                <input type="submit" value="Voltar">
             <h1>
                 Nome #{esporteNome esporte}
             <div>
@@ -74,6 +76,8 @@ getEsporteAlterarR espid = do
     (widget,enctype) <- generateFormPost (formEsporte $ Just esporte)
     defaultLayout $ do
         [whamlet|
+            <a href=@{HomeLogadoR}>
+                <input type="submit" value="Voltar">
             <form action=@{EsporteAlterarR espid} method=post>
                 ^{widget}
                 <input type="submit" value="Atualizar">
