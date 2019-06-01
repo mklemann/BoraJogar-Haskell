@@ -57,7 +57,7 @@ getEsportePerfilR espid = do
             <a href=@{HomeLogadoR}>
                 <input type="submit" value="Voltar">
             <h1>
-                Nome #{esporteNome esporte}
+                Nome: #{esporteNome esporte}
             <div>
                 Descricao: #{esporteDescricao esporte}
             <div>

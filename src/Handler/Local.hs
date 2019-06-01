@@ -57,7 +57,7 @@ getLocalPerfilR locid = do
             <a href=@{HomeLogadoR}>
                 <input type="submit" value="Voltar">
             <h1>
-                Nome #{localNome local}
+                Nome: #{localNome local}
             <div>
                 Descricao: #{localDescricao local}
             <div>

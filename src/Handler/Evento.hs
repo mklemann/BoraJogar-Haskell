@@ -64,6 +64,8 @@ getTodosEventosR = do
 --     evento <- runDB $ get404 evid
 --     defaultLayout $ do 
 --         [whamlet|
+--             <a href=@{HomeLogadoR}>
+--                 <input type="submit" value="Voltar">
 --             <h1>
 --                 Nome #{eventoNome evento}
 --             <div>

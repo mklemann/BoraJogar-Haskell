@@ -60,7 +60,7 @@ getAtletaPerfilR atlid = do
             <a href=@{HomeLogadoR}>
                 <input type="submit" value="Voltar">
             <h1>
-                Atleta #{atletaNome atleta}
+                Atleta: #{atletaNome atleta}
             <div>
                 Idade: #{atletaIdade atleta}
             <div>
