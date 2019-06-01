@@ -26,16 +26,39 @@ getHomeLogadoR = do
             }
         |]
         toWidget [lucius|
-            h1 {
-                color : green;
+            h1{
+                color : orange;
+                text-align: center;
+                margin-top:50px;
             }
+          
+            #end{
+                float: right;
+                widght:100px;
+                height:150px;
+            }
+             #init{
+                float:left;
+                widght:100px;
+                height:150px;
+            }
+            span{
+                align: center;
+            }
+          
         |]
         [whamlet|
             $maybe sessao <- sess    
                 Ola #{sessao}
             $nothing    
+            <div class="container">
                 <h1 class>
-                    BEM VINDO AO BORA JOGAR!
+                    <img src=@{StaticR imgs_boraJogar_jpg} id="init">
+                    
+                    <span>
+                        Bem Vindo ao Bora Jogar
+                        
+                    <img src=@{StaticR imgs_boraJogar_jpg} id="end">  
             <ul>
                
                 <li>
@@ -69,7 +92,7 @@ getHomeLogadoR = do
                             <input type="submit" value="Sair">
                 $nothing
                
-               <img src=@{StaticR imgs_boraJogar_jpg}>
+               
                         
             <button onclick="teste()" class="btn btn-primary">
                 OK
