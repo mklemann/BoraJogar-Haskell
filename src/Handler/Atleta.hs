@@ -47,6 +47,7 @@ getAtletaR = do
             }
             h2{
                 color:red;
+                align:center;
             }
             |]
         [whamlet|
@@ -64,7 +65,8 @@ getAtletaR = do
             <a href=@{HomeLogadoR}>
                 <input type="submit" value="Voltar">
             <h2>
-            <form action=@{AtletaR} method=post>
+             <div class="container">
+              <form action=@{AtletaR} method=post>
                 ^{widget}
                 <input type="submit" value="Cadastrar">
                 
