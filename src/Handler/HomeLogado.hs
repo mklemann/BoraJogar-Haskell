@@ -45,7 +45,10 @@ getHomeLogadoR = do
             span{
                 align: center;
             }
-          
+            
+            a{
+                 margin:20px;
+            }
         |]
         [whamlet|
             $maybe sessao <- sess    
@@ -59,43 +62,51 @@ getHomeLogadoR = do
                         Bem Vindo ao Bora Jogar
                         
                     <img src=@{StaticR imgs_boraJogar_jpg} id="end">  
-            <ul>
-               
-                <li>
-                    <a href=@{AtletaR}>
-                        Cadastro de Atletas
-                <li>
-                    <a href=@{TodosAtletasR}>
-                        Listar Atletas
-                <li>
-                    <a href=@{LocalR}>
-                        Cadastro de Locais
-                <li>
-                    <a href=@{TodosLocaisR}>
-                        Listar Locais
-                <li>
-                    <a href=@{EsporteR}>
-                        Cadastro de Esportes
-                <li>
-                    <a href=@{TodosEsportesR}>
-                        Listar Esportes
-                <li>
-                    <a href=@{EventoR}>
-                        Cadastro de Eventos
-                <li>
-                    <a href=@{TodosEventosR}>
-                        Listar Eventos
+                    
+        
+                    
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href=@{HomeR}>
+                    Inicial
+                <div class="collapse navbar-collapse id="navbarNavAltMarkup>
                 
-                $maybe _ <- sess 
-                    <li>
-                        <form action=@{LogoutR} method=post>
-                            <input type="submit" value="Sair">
-                $nothing
+                
+                    <div class="navbar-nav">
+               
+                       
+                            <a href=@{AtletaR} class="nav-link" >
+                                Cadastro de Atletas
+                       
+                            <a href=@{TodosAtletasR} class="nav-link" >
+                                Listar Atletas
+                        
+                            <a href=@{LocalR} class="nav-link" >
+                                Cadastro de Locais
+                        
+                            <a href=@{TodosLocaisR} class="nav-link" >
+                                Listar Locais
+                       
+                            <a href=@{EsporteR} class="nav-link" >
+                                Cadastro de Esportes
+                      
+                            <a href=@{TodosEsportesR} class="nav-link" >
+                                Listar Esportes
+                       
+                            <a href=@{EventoR} class="nav-link" >
+                                Cadastro de Eventos
+                       
+                            <a href=@{TodosEventosR} class="nav-link" >
+                                Listar Eventos
+                
+            $maybe _ <- sess 
+                       
+                <form action=@{LogoutR} method=post>
+                    <input type="submit" value="Sair">
+            $nothing  
                
                
                         
-            <button onclick="teste()" class="btn btn-primary">
-                OK
+            
             
         |]
 
