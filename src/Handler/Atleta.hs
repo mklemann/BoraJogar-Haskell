@@ -23,13 +23,56 @@ getAtletaR :: Handler Html
 getAtletaR = do 
     (widget,enctype) <- generateFormPost (formAtleta Nothing)
     defaultLayout $ do
+        addStylesheet $ StaticR css_bootstrap_css
+        
+        toWidget [lucius|
+            h1{
+                color : blue;
+                text-align: center;
+                margin-top:50px;
+            }
+          
+            #end{
+                float: right;
+                widght:100px;
+                height:150px;
+            }
+             #init{
+                float:left;
+                widght:100px;
+                height:150px;
+            }
+            span{
+                align: center;
+            }
+            #formu{
+                align:center;
+                color:blue;
+                flex-direction:center;
+                
+            }
+            |]
         [whamlet|
-        <h1>
+                
+            <div class="container">
+                <h1 class>
+                    <img src=@{StaticR imgs_boraJogar_jpg} id="init">
+                    
+                    <span>
+                        Bem Vindo ao Bora Jogar
+                        
+                    <img src=@{StaticR imgs_boraJogar_jpg} id="end">  
+            
+            
             <a href=@{HomeLogadoR}>
                 <input type="submit" value="Voltar">
-            <form action=@{AtletaR} method=post>
-                ^{widget}
-                <input type="submit" value="Cadastrar">
+           
+            <div class="container" id="formu">
+              <form action=@{AtletaR} method=post class="form-inline">
+                 <div class="form-group row">
+                    ^{widget}
+                    <input type="submit" value="Cadastrar" class="btn btn-primary mb-2">
+                
         |]
 
 postAtletaR :: Handler Html

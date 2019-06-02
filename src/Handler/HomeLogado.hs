@@ -26,53 +26,87 @@ getHomeLogadoR = do
             }
         |]
         toWidget [lucius|
-            h1 {
-                color : green;
+            h1{
+                color : orange;
+                text-align: center;
+                margin-top:50px;
+            }
+          
+            #end{
+                float: right;
+                widght:100px;
+                height:150px;
+            }
+             #init{
+                float:left;
+                widght:100px;
+                height:150px;
+            }
+            span{
+                align: center;
+            }
+            
+            a{
+                 margin:20px;
             }
         |]
         [whamlet|
             $maybe sessao <- sess    
                 Ola #{sessao}
             $nothing    
+            <div class="container">
                 <h1 class>
-                    BEM VINDO AO BORA JOGAR!
-            <ul>
-               
-                <li>
-                    <a href=@{AtletaR}>
-                        Cadastro de Atletas
-                <li>
-                    <a href=@{TodosAtletasR}>
-                        Listar Atletas
-                <li>
-                    <a href=@{LocalR}>
-                        Cadastro de Locais
-                <li>
-                    <a href=@{TodosLocaisR}>
-                        Listar Locais
-                <li>
-                    <a href=@{EsporteR}>
-                        Cadastro de Esportes
-                <li>
-                    <a href=@{TodosEsportesR}>
-                        Listar Esportes
-                <li>
-                    <a href=@{EventoR}>
-                        Cadastro de Eventos
-                <li>
-                    <a href=@{TodosEventosR}>
-                        Listar Eventos
-                
-                $maybe _ <- sess 
-                    <li>
-                        <form action=@{LogoutR} method=post>
-                            <input type="submit" value="Sair">
-                $nothing
-               
-               <img src=@{StaticR imgs_boraJogar_jpg}>
+                    <img src=@{StaticR imgs_boraJogar_jpg} id="init">
+                    
+                    <span>
+                        Bem Vindo ao Bora Jogar
                         
-            <button onclick="teste()" class="btn btn-primary">
-                OK
+                    <img src=@{StaticR imgs_boraJogar_jpg} id="end">  
+                    
+        
+                    
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href=@{HomeR}>
+                    Inicial
+                <div class="collapse navbar-collapse id="navbarNavAltMarkup>
+                
+                
+                    <div class="navbar-nav">
+               
+                       
+                            <a href=@{AtletaR} class="nav-link" >
+                                Cadastro de Atletas
+                       
+                            <a href=@{TodosAtletasR} class="nav-link" >
+                                Listar Atletas
+                        
+                            <a href=@{LocalR} class="nav-link" >
+                                Cadastro de Locais
+                        
+                            <a href=@{TodosLocaisR} class="nav-link" >
+                                Listar Locais
+                       
+                            <a href=@{EsporteR} class="nav-link" >
+                                Cadastro de Esportes
+                      
+                            <a href=@{TodosEsportesR} class="nav-link" >
+                                Listar Esportes
+                       
+                            <a href=@{EventoR} class="nav-link" >
+                                Cadastro de Eventos
+                       
+                            <a href=@{TodosEventosR} class="nav-link" >
+                                Listar Eventos
+                
+            $maybe _ <- sess 
+                       
+                <form action=@{LogoutR} method=post>
+                    <input type="submit" value="Sair">
+            $nothing  
+               
+               
+                        
+            
             
         |]
 

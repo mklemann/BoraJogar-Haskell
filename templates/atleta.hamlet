@@ -1,3 +1,14 @@
+
+<div class="container">
+                <h1 class>
+                    <img src=@{StaticR imgs_boraJogar_jpg} id="init"  float:left;
+                widght:100px;
+                height:150px;>
+                    
+                    <span>
+                        Bem Vindo ao Bora Jogar
+                        
+                    <img src=@{StaticR imgs_boraJogar_jpg} id="end">  
 <table>
     <thead>
         <tr>

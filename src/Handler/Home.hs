@@ -27,11 +27,12 @@ getHomeR = do
         |]
         
         toWidget [lucius|
-            h1 {
+            h1{
                 color : green;
                 text-align: center;
-                margin-top:80px;
+                margin-top:50px;
             }
+          
             #end{
                 float: right;
                 widght:100px;
@@ -40,7 +41,7 @@ getHomeR = do
             div{
                 align-items: center;
                 display: flex;
-                flex-direction:column;
+                flex-direction:row;
                 flex-wrap: wrap;
                 justify-content: center;
             }
@@ -51,7 +52,8 @@ getHomeR = do
             }
           
             ul{
-               flex-direction:column; 
+                display: flex;            
+                flex-direction:row; 
             }
             
             span{
@@ -67,7 +69,8 @@ getHomeR = do
                 <h1 class>
                     <img src=@{StaticR imgs_boraJogar_jpg} id="init">
                     
-                    <span>  Bem Vindo ao Bora Jogar
+                    <span>
+                        Bem Vindo ao Bora Jogar
                         
                     <img src=@{StaticR imgs_boraJogar_jpg} id="end">        
             <br>
