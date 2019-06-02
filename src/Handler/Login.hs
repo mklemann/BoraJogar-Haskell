@@ -25,10 +25,16 @@ getLoginR = do
         
         
         toWidget [lucius|
+            body {
+                background: rgb(173,216,230);
+                background: linear-gradient(90deg, rgba(173,216,230,1) 0%, rgba(255,255,255,0) 20%, rgba(242,249,251,1) 80%, rgba(173,216,230,1) 100%);  
+            }
+            
             #divCentral {
                 margin: 0 auto;
                 width: 300px;
                 height: 300px;
+                border: 1px;
             }
             #divExterna{
                 align-items: center;
@@ -38,30 +44,63 @@ getLoginR = do
                 justify-content: center;
             }
             
+             div{
+                align-items: center;
+                display: flex;
+                flex-direction:row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            #init{
+                float:left;
+                widght:100px;
+                height:150px;
+            }
+          
+            ul{
+                display: flex;            
+                flex-direction:row; 
+            }
+            
+            span{
+                align: center;
+            }
+          
+            #end{
+                float: right;
+                widght:100px;
+                height:150px;
+            }
+            
         |]
         
         [whamlet|
             $maybe mensagem <- msg
                 ^{mensagem}
-            <div id="divExterna">
-                <div id="divCentral">
-                    <div class="card" style="width: 300px; height: 300px;">
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Entre com seus dados!
-                                <form action=@{LoginR} method=post>
-                                    ^{widget}
-                                    <input type="submit" value="entrar">
+
+            <div class="container">
+                    <img src=@{StaticR imgs_boraJogar_jpg} id="init">
+                    
+                    <h2 calss="h2">
+                        Entre com  seus dados
+                        
+                    <img src=@{StaticR imgs_boraJogar_jpg} id="end">  
+                        
+            <br>
+            <br>
+            <br>
         
-        |]
+    
+                <div id="divExterna">
+                    <div id="divCentral">
+                        <div class="card" style="width: 230px; height: 300px;">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Entre com seus dados!
+                                    <form action=@{LoginR} method=post>
+                                        ^{widget}
+                                        <input type="submit" value="entrar">
         
-        toWidgetHead [julius|
-            const div = document.getElementsByTagName("div");
-            
-            let teste = [];
-            teste = [...div];
-            
-            console.log(div[0])
-            console.log(div);
         |]
 
 

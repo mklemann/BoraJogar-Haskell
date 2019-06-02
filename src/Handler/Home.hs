@@ -27,16 +27,14 @@ getHomeR = do
         |]
         
         toWidget [lucius|
+            body {
+                background: rgb(173,216,230);
+                background: linear-gradient(90deg, rgba(173,216,230,1) 0%, rgba(255,255,255,0) 20%, rgba(242,249,251,1) 80%, rgba(173,216,230,1) 100%);            }
+    
             h1{
                 color : green;
                 text-align: center;
                 margin-top:50px;
-            }
-          
-            #end{
-                float: right;
-                widght:100px;
-                height:150px;
             }
             div{
                 align-items: center;
@@ -45,6 +43,7 @@ getHomeR = do
                 flex-wrap: wrap;
                 justify-content: center;
             }
+            
             #init{
                 float:left;
                 widght:100px;
@@ -58,6 +57,12 @@ getHomeR = do
             
             span{
                 align: center;
+            }
+          
+            #end{
+                float: right;
+                widght:100px;
+                height:150px;
             }
             
         |]
@@ -96,4 +101,3 @@ getHomeR = do
                                         Entrar
                         
         |]
-
