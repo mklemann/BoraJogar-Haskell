@@ -85,10 +85,15 @@ getLocalR = do
                     Cadastro de Locais
                     
                 <img src=@{StaticR imgs_boraJogar_jpg} id="end">  
+
                     
             <br>
             <br>
             <br>
+            
+                <a href=@{HomeLogadoR}>
+                    <input type="submit" value="Voltar">
+
                 <div id="divExterna">
                     <div id="divCentral">
                         <div class="card" style="width: 230px; height: 300px;">
@@ -97,6 +102,7 @@ getLocalR = do
                                     <form action=@{LocalR} method=post>
                                         ^{widget}
                                         <input type="submit" value="cadastrar">
+
                 
         |]
 

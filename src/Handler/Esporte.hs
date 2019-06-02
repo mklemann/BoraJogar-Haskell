@@ -90,6 +90,11 @@ getEsporteR = do
             <br>
             <br>
             <br>
+            
+                <a href=@{HomeLogadoR}>
+                    <input type="submit" value="Voltar">
+
+            
                 <div id="divExterna">
                     <div id="divCentral">
                         <div class="card" style="width: 230px; height: 300px;">

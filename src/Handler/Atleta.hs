@@ -89,21 +89,22 @@ getAtletaR = do
                     <img src=@{StaticR imgs_boraJogar_jpg} id="end">  
             
             
-                <input type="submit" value="Voltar">
                              
             <br>
             <br>
             <br>
+                <a href=@{HomeLogadoR}>
+                    <input type="submit" value="Voltar">
            
-            <div id="divExterna">
-                <div id="divCentral">
-                    <div class="card" style="width: 300px; height: 400px;">
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Entre com seus dados!
-                                <form action=@{AtletaR} method=post class="form-inline">
-                                    <div class="form-group row">
-                                        ^{widget}
-                                        <input type="submit" value="Cadastrar" class="btn btn-primary mb-2">
+                <div id="divExterna">
+                    <div id="divCentral">
+                        <div class="card" style="width: 250px; height: 400px;">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Entre com seus dados!
+                                    <form action=@{AtletaR} method=post class="form-inline">
+                                        <div class="form-group row">
+                                            ^{widget}
+                                            <input type="submit" value="Cadastrar" class="btn btn-primary mb-2">
                 
         |]
 
