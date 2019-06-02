@@ -45,9 +45,11 @@ getAtletaR = do
             span{
                 align: center;
             }
-            h2{
-                color:red;
+            #formu{
                 align:center;
+                color:blue;
+                flex-direction:center;
+                
             }
             |]
         [whamlet|
@@ -64,11 +66,12 @@ getAtletaR = do
             
             <a href=@{HomeLogadoR}>
                 <input type="submit" value="Voltar">
-            <h2>
-             <div class="container">
-              <form action=@{AtletaR} method=post>
-                ^{widget}
-                <input type="submit" value="Cadastrar">
+           
+            <div class="container" id="formu">
+              <form action=@{AtletaR} method=post class="form-inline">
+                 <div class="form-group row">
+                    ^{widget}
+                    <input type="submit" value="Cadastrar" class="btn btn-primary mb-2">
                 
         |]
 
