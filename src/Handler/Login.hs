@@ -83,7 +83,7 @@ getLoginR = do
                     <img src=@{StaticR imgs_boraJogar_jpg} id="init">
                     
                     <h2 calss="h2">
-                        Entre com  seus dados
+                        Entre com seus dados para logar
                         
                     <img src=@{StaticR imgs_boraJogar_jpg} id="end">  
                         

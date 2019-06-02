@@ -71,10 +71,9 @@ getHomeR = do
                 Ola #{sessao}
             $nothing    
             <div class="container">
-                <h1 class>
                     <img src=@{StaticR imgs_boraJogar_jpg} id="init">
                     
-                    <span>
+                    <h2 class="h2">
                         Bem Vindo ao Bora Jogar
                         
                     <img src=@{StaticR imgs_boraJogar_jpg} id="end">        
