@@ -44,7 +44,7 @@ getLoginR = do
                 justify-content: center;
             }
             
-             div{
+            div{
                 align-items: center;
                 display: flex;
                 flex-direction:row;
@@ -71,6 +71,9 @@ getLoginR = do
                 float: right;
                 widght:100px;
                 height:150px;
+            }
+            input: {
+                margin: 5px;
             }
             
         |]

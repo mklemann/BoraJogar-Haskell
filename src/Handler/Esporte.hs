@@ -53,8 +53,8 @@ getEsporteR = do
                 <h1 class>
                     <img src=@{StaticR imgs_boraJogar_jpg} id="init">
                     
-                    <span>
-                        Bem Vindo ao Bora Jogar
+                    <h2 class = "h2">
+                        Cadastro de Esportes
                         
                     <img src=@{StaticR imgs_boraJogar_jpg} id="end">  
                     

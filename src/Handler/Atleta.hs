@@ -26,10 +26,46 @@ getAtletaR = do
         addStylesheet $ StaticR css_bootstrap_css
         
         toWidget [lucius|
-            h1{
-                color : blue;
-                text-align: center;
-                margin-top:50px;
+            body {
+                background: rgb(173,216,230);
+                background: linear-gradient(90deg, rgba(173,216,230,1) 0%, rgba(255,255,255,0) 20%, rgba(242,249,251,1) 80%, rgba(173,216,230,1) 100%);  
+            }
+            
+            #divCentral {
+                margin: 0 auto;
+                width: 300px;
+                height: 300px;
+                border: 1px;
+            }
+            #divExterna{
+                align-items: center;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+             div{
+                align-items: center;
+                display: flex;
+                flex-direction:row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            #init{
+                float:left;
+                widght:100px;
+                height:150px;
+            }
+          
+            ul{
+                display: flex;            
+                flex-direction:row; 
+            }
+            
+            span{
+                align: center;
             }
           
             #end{
@@ -37,41 +73,37 @@ getAtletaR = do
                 widght:100px;
                 height:150px;
             }
-             #init{
-                float:left;
-                widght:100px;
-                height:150px;
+            input{
+                margin: 10px;
             }
-            span{
-                align: center;
-            }
-            #formu{
-                align:center;
-                color:blue;
-                flex-direction:center;
-                
-            }
-            |]
+            
+        |]
+        
         [whamlet|
-                
             <div class="container">
-                <h1 class>
                     <img src=@{StaticR imgs_boraJogar_jpg} id="init">
                     
-                    <span>
-                        Bem Vindo ao Bora Jogar
+                    <h2 class="h2">
+                        Cadastro de Atletas
                         
                     <img src=@{StaticR imgs_boraJogar_jpg} id="end">  
             
             
-            <a href=@{HomeLogadoR}>
                 <input type="submit" value="Voltar">
+                             
+            <br>
+            <br>
+            <br>
            
-            <div class="container" id="formu">
-              <form action=@{AtletaR} method=post class="form-inline">
-                 <div class="form-group row">
-                    ^{widget}
-                    <input type="submit" value="Cadastrar" class="btn btn-primary mb-2">
+            <div id="divExterna">
+                <div id="divCentral">
+                    <div class="card" style="width: 300px; height: 400px;">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Entre com seus dados!
+                                <form action=@{AtletaR} method=post class="form-inline">
+                                    <div class="form-group row">
+                                        ^{widget}
+                                        <input type="submit" value="Cadastrar" class="btn btn-primary mb-2">
                 
         |]
 
