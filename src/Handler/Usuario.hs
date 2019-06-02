@@ -38,7 +38,7 @@ postUsuarioR = do
             if (usuarioSenha usuario) == confirmacao then do 
                 runDB $ insert usuario
                 setMessage [shamlet|
-                <h2>
+                <h5 style="text-align: center;" class="h5">
                     USUARIO CADASTRADO COM SUCESSO!
             |]
                 redirect HomeR
