@@ -16,8 +16,9 @@ import Database.Persist.Postgresql
 getHomeLogadoR :: Handler Html
 getHomeLogadoR = do
     sess <- lookupSession "_ID"
+    
     eventos <- runDB $ selectList [] [Asc EventoNome]
-    esporte <- runDB $ selectList [] [Asc EsporteNome]
+    
     defaultLayout $ do
         -- pasta: static/css/bootstrap.css
         -- / e . sao trocados por _
@@ -112,18 +113,23 @@ getHomeLogadoR = do
                 <form action=@{LogoutR} method=post>
                     <input type="submit" value="Sair">
             $nothing  
-            
-            <table>
-                <thead>
+            <br>
+            <br>
+            <table class="table">
+                 <thead class="thead-dark">
                     <tr>
-                        <th>
+                        <th scope="col">
                              Nome
-                        <th>
+                        <th scope="col">
                             Hora
-                        <a href=@{HomeLogadoR}>
-                            <input type="submit" value="Voltar">
+                        <th scope="col">
+                            Data
+                        <th scope="col">
+                            Local
+                        <th scope="col">
+                            Esporte
                 
-                <tbody>
+                 <tbody>
                     $forall (Entity evid evento) <- eventos
                         <tr>
                             <td>
@@ -131,7 +137,16 @@ getHomeLogadoR = do
                             <td>
                                 #{eventoHora evento}
                             <td>
-                                #{esporteNome esporte}
+                                Dia
+                            <td>
+                                Lugar
+                            <td>
+                                Atividade
+                           
+                           
+               <br>
+               <a href=@{HomeLogadoR}>
+                            <input type="submit" value="Voltar">              
                
         |]
         
