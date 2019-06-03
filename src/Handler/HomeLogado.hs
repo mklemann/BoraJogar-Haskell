@@ -16,6 +16,8 @@ import Database.Persist.Postgresql
 getHomeLogadoR :: Handler Html
 getHomeLogadoR = do
     sess <- lookupSession "_ID"
+    eventos <- runDB $ selectList [] [Asc EventoNome]
+    esporte <- runDB $ selectList [] [Asc EsporteNome]
     defaultLayout $ do
         -- pasta: static/css/bootstrap.css
         -- / e . sao trocados por _
@@ -62,9 +64,13 @@ getHomeLogadoR = do
                 widght:100px;
                 height:150px;
             }
+            table{
+                align:center;
+            }
         |]
         
         [whamlet|
+            
             $maybe sessao <- sess    
                 Ola #{sessao}
             $nothing 
@@ -106,5 +112,27 @@ getHomeLogadoR = do
                 <form action=@{LogoutR} method=post>
                     <input type="submit" value="Sair">
             $nothing  
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                             Nome
+                        <th>
+                            Hora
+                        <a href=@{HomeLogadoR}>
+                            <input type="submit" value="Voltar">
+                
+                <tbody>
+                    $forall (Entity evid evento) <- eventos
+                        <tr>
+                            <td>
+                                #{eventoNome evento}
+                            <td>
+                                #{eventoHora evento}
+                            <td>
+                                #{esporteNome esporte}
                
         |]
+        
+        
