@@ -142,12 +142,6 @@ getHomeLogadoR = do
                                 Lugar
                             <td>
                                 Atividade
-                           
-                           
-               <br>
-               <a href=@{HomeLogadoR}>
-                            <input type="submit" value="Voltar">              
-               
         |]
         
         
