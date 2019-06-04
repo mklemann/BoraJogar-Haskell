@@ -146,29 +146,36 @@ getTodosAtletasR = do
                 widght:100px;
                 height:150px;
             }
-            
+            table{
+                align:center;
+            }
+            a{
+                align:center;
+                flex:center;
+            }
         |]
         [whamlet|
-            <div class="container">
+         
+            <a href=@{HomeLogadoR}>            
+               <div class="container">
                     <img src=@{StaticR imgs_boraJogar_jpg} id="init">
                     
-                    <h2 class="h2">
+                     <h2 class="h2">
                         Lista de Atletas Cadastrados
                         
                     <img src=@{StaticR imgs_boraJogar_jpg} id="end">  
-            <table>
-                <thead>
+            <table class="table">
+                <thead class="thead-dark">
                     <tr>
-                        <th>
+                        <th scope="col">
                             Nome
-                        <th>
+                        <th scope="col">
                             Idade
-                        <th>
+                        <th scope="col">
                             CPF
-                        <th>
+                        <th scope="col">
                             Telefone
-                    <a href=@{HomeLogadoR}>
-                        <input type="submit" value="Voltar">
+                    
                 
                 <tbody>
                     $forall (Entity atlid atleta) <- atletas
@@ -188,6 +195,9 @@ getTodosAtletasR = do
                             <td>
                                 <form action=@{AtletaApagarR atlid} method=post>
                                     <input type="submit" value="X">
+          <a href=@{AtletaR}>
+            <input type="button" value="Adicionar ATLETA">
+              
         |]
     
     
