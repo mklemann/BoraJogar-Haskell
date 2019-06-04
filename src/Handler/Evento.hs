@@ -132,8 +132,72 @@ postEventoR = do
 getTodosEventosR :: Handler Html
 getTodosEventosR = do 
     eventos <- runDB $ selectList [] [Asc EventoNome]
-    defaultLayout $(whamletFile "templates/evento.hamlet")
-    
+    defaultLayout $ do
+        addStylesheet $ StaticR css_bootstrap_css
+            
+        toWidget [lucius|
+            body {
+                background: rgb(173,216,230);
+                background: linear-gradient(90deg, rgba(173,216,230,1) 0%, rgba(255,255,255,0) 20%, rgba(242,249,251,1) 80%, rgba(173,216,230,1) 100%);  
+            }
+         
+            #init{
+                float:left;
+                widght:100px;
+                height:150px;
+            }
+        
+            #end{
+                float: right;
+                widght:100px;
+                height:150px;
+            }
+            table{
+                align:center;
+            }
+            a{
+                align:center;
+                flex:center;
+            }
+        |]
+        [whamlet|
+         <a href=@{HomeLogadoR}>            
+               <div class="container">
+                    <img src=@{StaticR imgs_boraJogar_jpg} id="init">
+                    
+                     <h2 class="h2">
+                        Lista de Atletas Cadastrados
+                        
+                    <img src=@{StaticR imgs_boraJogar_jpg} id="end"> 
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">
+                         Nome
+                    <th scope="col">
+                        Hora
+                    <th scope="col">
+                        Data
+                    <th scope="col">
+                        Local
+                    <th scope="col">
+                        Esporte
+                
+            <tbody>
+                $forall (Entity evid evento) <- eventos
+                 <tr>
+                     <td>
+                         #{eventoNome evento}
+                    <td>
+                        #{eventoHora evento}
+                    <td>
+                        Dia
+                    <td>
+                        Lugar
+                    <td>
+                        Atividade
+            
+        |]
 -- getEventoPerfilR :: EventoId -> Handler Html
 -- getEventoPerfilR evid = do 
 --     evento <- runDB $ get404 evid
@@ -152,7 +216,6 @@ getTodosEventosR = do
 --             <div>
 --                 Data: #{eventoData evento}
 --         |]
-
 -- postEventoApagarR :: EventoId -> Handler Html
 -- postEventoApagarR evid = do
 --     runDB $ get404 evid
