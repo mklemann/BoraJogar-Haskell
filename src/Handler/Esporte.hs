@@ -78,21 +78,22 @@ getEsporteR = do
         |]
 
         [whamlet|
-            <div class="container">
-                <h1 class>
-                    <img src=@{StaticR imgs_boraJogar_jpg} id="init">
+                    <a href=@{HomeLogadoR}>
+                        <div class="container">
+                            <h1 class>
+                                <img src=@{StaticR imgs_boraJogar_jpg} id="init">
                     
-                    <h2 class="h2">
-                        Cadastro de Esportes
+                                <h2 class="h2">
+                                    Cadastro de Esportes
                         
-                    <img src=@{StaticR imgs_boraJogar_jpg} id="end">  
+                            <img src=@{StaticR imgs_boraJogar_jpg} id="end">  
                     
             <br>
             <br>
             <br>
             
-                <a href=@{HomeLogadoR}>
-                    <input type="submit" value="Voltar">
+               
+                    
 
             
                 <div id="divExterna">
@@ -124,16 +125,173 @@ postEsporteR = do
 getTodosEsportesR :: Handler Html
 getTodosEsportesR = do 
     esportes <- runDB $ selectList [] [Asc EsporteNome]
-    defaultLayout $(whamletFile "templates/esporte.hamlet")
+    defaultLayout $ do 
+        addStylesheet $ StaticR css_bootstrap_css
+        
+        toWidget [lucius|
+            body {
+                background: rgb(173,216,230);
+                background: linear-gradient(90deg, rgba(173,216,230,1) 0%, rgba(255,255,255,0) 20%, rgba(242,249,251,1) 80%, rgba(173,216,230,1) 100%);  
+            }
+            
+            #divCentral {
+                margin: 0 auto;
+                width: 300px;
+                height: 300px;
+                border: 1px;
+            }
+            #divExterna{
+                align-items: center;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+             div{
+                align-items: center;
+                display: flex;
+                flex-direction:row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            #init{
+                float:left;
+                widght:100px;
+                height:150px;
+            }
+          
+            ul{
+                display: flex;            
+                flex-direction:row; 
+            }
+            
+            span{
+                align: center;
+            }
+          
+            #end{
+                float: right;
+                widght:100px;
+                height:150px;
+            }
+            input{
+                margin: 10px;
+            }
+            
+        |]
+        [whamlet|
+            <a href=@{HomeLogadoR}>
+                        <div class="container">
+                            <h1 class>
+                                <img src=@{StaticR imgs_boraJogar_jpg} id="init">
+                    
+                                <h2 class="h2">
+                                    Cadastro de Esportes
+                        
+                            <img src=@{StaticR imgs_boraJogar_jpg} id="end"> 
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">
+                             Nome
+                        <th scope="col">
+                            Descricao
+                        <th scope="col">
+                             Participantes
+                        
+                
+                <tbody>
+                 $forall (Entity espid esporte) <- esportes
+                    <tr>
+                        <td>
+                            <a href=@{EsportePerfilR espid}>
+                             #{esporteNome esporte}
+                        <td>
+                            #{esporteDescricao esporte}
+                        <td>
+                             #{esporteParticipantes esporte}
+                        <td>
+                            <a href=@{EsporteAlterarR espid}>
+                                Editar
+                        <td>
+                            <form action=@{EsporteApagarR espid} method=post>
+                                <input type="submit" value="X">
+            <a href=@{EsporteR}>
+                <input type="button" value="Adicionar Esporte">
+        |]
 
 getEsportePerfilR :: EsporteId -> Handler Html
 getEsportePerfilR espid = do 
     esporte <- runDB $ get404 espid
     defaultLayout $ do 
+        addStylesheet $ StaticR css_bootstrap_css
+        
+        toWidget [lucius|
+            body {
+                background: rgb(173,216,230);
+                background: linear-gradient(90deg, rgba(173,216,230,1) 0%, rgba(255,255,255,0) 20%, rgba(242,249,251,1) 80%, rgba(173,216,230,1) 100%);  
+            }
+            
+            #divCentral {
+                margin: 0 auto;
+                width: 300px;
+                height: 300px;
+                border: 1px;
+            }
+            #divExterna{
+                align-items: center;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+             div{
+                align-items: center;
+                display: flex;
+                flex-direction:row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            #init{
+                float:left;
+                widght:100px;
+                height:150px;
+            }
+          
+            ul{
+                display: flex;            
+                flex-direction:row; 
+            }
+            
+            span{
+                align: center;
+            }
+          
+            #end{
+                float: right;
+                widght:100px;
+                height:150px;
+            }
+            input{
+                margin: 10px;
+            }
+            
+        |]
         [whamlet|
             <a href=@{HomeLogadoR}>
-                <input type="submit" value="Voltar">
-            <h1>
+                <div class="container">
+                            <h1 class>
+                                <img src=@{StaticR imgs_boraJogar_jpg} id="init">
+                    
+                                <h2 class="h2">
+                                    Cadastro de Esportes
+                        
+                            <img src=@{StaticR imgs_boraJogar_jpg} id="end"> 
+            <h2>
                 Nome: #{esporteNome esporte}
             <div>
                 Descricao: #{esporteDescricao esporte}
