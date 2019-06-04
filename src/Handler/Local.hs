@@ -78,21 +78,22 @@ getLocalR = do
         |]
         
         [whamlet|
-            <div class="container">
-                <img src=@{StaticR imgs_boraJogar_jpg} id="init">
+                <a href=@{HomeLogadoR}>
+                    <div class="container">
+                        <img src=@{StaticR imgs_boraJogar_jpg} id="init">
                 
-                <h2 class="h2">
-                    Cadastro de Locais
+                        <h2 class="h2">
+                            Cadastro de Locais
                     
-                <img src=@{StaticR imgs_boraJogar_jpg} id="end">  
+                        <img src=@{StaticR imgs_boraJogar_jpg} id="end">  
 
                     
             <br>
             <br>
             <br>
             
-                <a href=@{HomeLogadoR}>
-                    <input type="submit" value="Voltar">
+                
+                   
 
                 <div id="divExterna">
                     <div id="divCentral">
@@ -125,8 +126,104 @@ postLocalR = do
 getTodosLocaisR :: Handler Html
 getTodosLocaisR = do 
     locais <- runDB $ selectList [] [Asc LocalNome]
-    defaultLayout $(whamletFile "templates/local.hamlet")
-
+    defaultLayout $ do 
+        addStylesheet $ StaticR css_bootstrap_css
+        
+        toWidget [lucius|
+            body {
+                background: rgb(173,216,230);
+                background: linear-gradient(90deg, rgba(173,216,230,1) 0%, rgba(255,255,255,0) 20%, rgba(242,249,251,1) 80%, rgba(173,216,230,1) 100%);  
+            }
+            
+            #divCentral {
+                margin: 0 auto;
+                width: 300px;
+                height: 300px;
+                border: 1px;
+            }
+            #divExterna{
+                align-items: center;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+             div{
+                align-items: center;
+                display: flex;
+                flex-direction:row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            #init{
+                float:left;
+                widght:100px;
+                height:150px;
+            }
+          
+            ul{
+                display: flex;            
+                flex-direction:row; 
+            }
+            
+            span{
+                align: center;
+            }
+          
+            #end{
+                float: right;
+                widght:100px;
+                height:150px;
+            }
+            input{
+                margin: 10px;
+            }
+        |]
+        
+        [whamlet |
+              <a href=@{HomeLogadoR}>
+                <div class="container">
+                        <img src=@{StaticR imgs_boraJogar_jpg} id="init">
+                
+                        <h2 class="h2">
+                            Cadastro de Locais
+                    
+                        <img src=@{StaticR imgs_boraJogar_jpg} id="end">  
+            <table class="table">
+                <thead class="thead-dark">
+                     <tr>
+                        <th scope="col">
+                             Nome
+                        <th scope="col">
+                            Descricao
+                        <th scope="col">
+                             Endereco
+            
+                
+            <tbody>
+                $forall (Entity locid local) <- locais
+                <tr>
+                    <td>
+                        <a href=@{LocalPerfilR locid}>
+                         #{localNome local}
+                    <td>
+                         #{localDescricao local}
+                    <td>
+                        #{localEndereco local}
+                    <td>
+                        <a href=@{LocalAlterarR locid}>
+                        Editar
+                    <td>
+                        <form action=@{LocalApagarR locid} method=post>
+                            <input type="submit" value="X">
+        
+        
+        |]
+        
+        
+        
 getLocalPerfilR :: LocalId -> Handler Html
 getLocalPerfilR locid = do 
     local <- runDB $ get404 locid
