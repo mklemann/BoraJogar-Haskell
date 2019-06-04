@@ -1,45 +1,45 @@
-
-<div class="container">
-                <h1 class>
-                    <img src=@{StaticR imgs_boraJogar_jpg} id="init"  float:left;
-                widght:100px;
-                height:150px;>
+<head>
+    <link rel="stylesheet" href="css/bootstrap.css">
+<body>
+    <div class="container">
+                <h1 class="active">
+                    <img src=@{StaticR imgs_boraJogar_jpg} id="init" styles="float:left; widght:100px; height:150px;">
                     
                     <span>
                         Bem Vindo ao Bora Jogar
                         
                     <img src=@{StaticR imgs_boraJogar_jpg} id="end">  
-<table>
-    <thead>
-        <tr>
-            <th>
-                NOME
-            <th>
-                Idade
-            <th>
-                CPF
-            <th>
-                Telefone
-        <a href=@{HomeLogadoR}>
-            <input type="submit" value="Voltar">
-                
-    <tbody>
-        $forall (Entity atlid atleta) <- atletas
+    <table>
+        <thead>
             <tr>
-                <td>
-                    <a href=@{AtletaPerfilR atlid}>
-                        #{atletaNome atleta}
-                <td>
-                    #{atletaIdade atleta}
-                <td>
-                    #{atletaCpf atleta}
-                <td>
-                    #{atletaTelefone atleta}
-                <td>
-                    <a href=@{AtletaAlteraR atlid}>
-                        Editar
-                <td>
-                    <form action=@{AtletaApagarR atlid} method=post>
-                        <input type="submit" value="X">
+                <th>
+                    NOME
+                <th>
+                    Idade
+                <th>
+                    CPF
+                <th>
+                    Telefone
+            <a href=@{HomeLogadoR}>
+                <input type="submit" value="Voltar">
+                
+        <tbody>
+            $forall (Entity atlid atleta) <- atletas
+                <tr>
+                    <td>
+                        <a href=@{AtletaPerfilR atlid}>
+                            #{atletaNome atleta}
+                    <td>
+                        #{atletaIdade atleta}
+                    <td>
+                        #{atletaCpf atleta}
+                    <td>
+                        #{atletaTelefone atleta}
+                    <td>
+                        <a href=@{AtletaAlteraR atlid}>
+                            Editar
+                    <td>
+                        <form action=@{AtletaApagarR atlid} method=post>
+                            <input type="submit" value="X">
                 
         

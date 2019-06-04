@@ -126,7 +126,73 @@ postAtletaR = do
 getTodosAtletasR :: Handler Html
 getTodosAtletasR = do 
     atletas <- runDB $ selectList [] [Asc AtletaNome]
-    defaultLayout $(whamletFile "templates/atleta.hamlet")
+    defaultLayout $ do 
+        addStylesheet $ StaticR css_bootstrap_css
+        
+        toWidget [lucius|
+            body {
+                background: rgb(173,216,230);
+                background: linear-gradient(90deg, rgba(173,216,230,1) 0%, rgba(255,255,255,0) 20%, rgba(242,249,251,1) 80%, rgba(173,216,230,1) 100%);  
+            }
+         
+            #init{
+                float:left;
+                widght:100px;
+                height:150px;
+            }
+        
+            #end{
+                float: right;
+                widght:100px;
+                height:150px;
+            }
+            
+        |]
+        [whamlet|
+            <div class="container">
+                    <img src=@{StaticR imgs_boraJogar_jpg} id="init">
+                    
+                    <h2 class="h2">
+                        Lista de Atletas Cadastrados
+                        
+                    <img src=@{StaticR imgs_boraJogar_jpg} id="end">  
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            Nome
+                        <th>
+                            Idade
+                        <th>
+                            CPF
+                        <th>
+                            Telefone
+                    <a href=@{HomeLogadoR}>
+                        <input type="submit" value="Voltar">
+                
+                <tbody>
+                    $forall (Entity atlid atleta) <- atletas
+                        <tr>
+                            <td>
+                                <a href=@{AtletaPerfilR atlid}>
+                                    #{atletaNome atleta}
+                            <td>
+                                #{atletaIdade atleta}
+                            <td>
+                                #{atletaCpf atleta}
+                            <td>
+                                #{atletaTelefone atleta}
+                            <td>
+                                <a href=@{AtletaAlteraR atlid}>
+                                    Editar
+                            <td>
+                                <form action=@{AtletaApagarR atlid} method=post>
+                                    <input type="submit" value="X">
+        |]
+    
+    
+    
+-- (whamletFile "templates/atleta.hamlet")
 
 getAtletaPerfilR :: AtletaId -> Handler Html
 getAtletaPerfilR atlid = do 
