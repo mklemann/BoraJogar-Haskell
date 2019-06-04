@@ -117,6 +117,8 @@ getHomeLogadoR = do
             <br>
             <table class="table">
                  <thead class="thead-dark">
+                    <h3 style="align: center;">
+                        Lista de Eventos
                     <tr>
                         <th scope="col">
                              Nome

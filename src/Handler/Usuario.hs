@@ -93,7 +93,7 @@ getUsuarioR = do
             <br>
             <br>
         
-                <a href=@{HomeLogadoR}>
+                <a href=@{HomeR}>
                     <input type="submit" value="Voltar">
 
                 <div id="divExterna">

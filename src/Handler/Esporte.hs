@@ -100,7 +100,7 @@ getEsporteR = do
                     <div id="divCentral">
                         <div class="card" style="width: 230px; height: 300px;">
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Entre com seus dados!
+                                <li class="list-group-item">Entre com os dados do esporte!
                                     <form action=@{EsporteR} method=post>
                                         ^{widget}
                                         <input type="submit" value="cadastrar">
@@ -188,7 +188,7 @@ getTodosEsportesR = do
                                 <img src=@{StaticR imgs_boraJogar_jpg} id="init">
                     
                                 <h2 class="h2">
-                                    Cadastro de Esportes
+                                    Lista de Esportes Cadastrados
                         
                             <img src=@{StaticR imgs_boraJogar_jpg} id="end"> 
             <table class="table">
@@ -203,23 +203,25 @@ getTodosEsportesR = do
                         
                 
                 <tbody>
-                 $forall (Entity espid esporte) <- esportes
-                    <tr>
-                        <td>
-                            <a href=@{EsportePerfilR espid}>
-                             #{esporteNome esporte}
-                        <td>
-                            #{esporteDescricao esporte}
-                        <td>
-                             #{esporteParticipantes esporte}
-                        <td>
-                            <a href=@{EsporteAlterarR espid}>
-                                Editar
-                        <td>
-                            <form action=@{EsporteApagarR espid} method=post>
-                                <input type="submit" value="X">
-            <a href=@{EsporteR}>
-                <input type="button" value="Adicionar Esporte">
+                    $forall (Entity espid esporte) <- esportes
+                        <tr>
+                            <td>
+                                <a href=@{EsportePerfilR espid}>
+                                    #{esporteNome esporte}
+                            <td>
+                                #{esporteDescricao esporte}
+                            <td>
+                                #{esporteParticipantes esporte}
+                            <td>
+                                <a href=@{EsporteAlterarR espid}>
+                                    Editar
+                            <td>
+                                <form action=@{EsporteApagarR espid} method=post>
+                                    <input type="submit" value="X">
+                <a href=@{EsporteR}>
+                    <input type="button" value="Adicionar Esporte">
+                <a href=@{HomeLogadoR}>
+                    <input type="submit" value="Voltar">
         |]
 
 getEsportePerfilR :: EsporteId -> Handler Html

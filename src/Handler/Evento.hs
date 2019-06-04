@@ -106,7 +106,7 @@ getEventoR = do
                     <div id="divCentral">
                         <div class="card" style="width: 250px; height: 400px;">
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Entre com seus dados!
+                                <li class="list-group-item">Entre com os dados do evento!
                                     <form action=@{EventoR} method=post class="form-inline">
                                         <div class="form-group row">
                                             ^{widget}
@@ -166,7 +166,7 @@ getTodosEventosR = do
                     <img src=@{StaticR imgs_boraJogar_jpg} id="init">
                     
                      <h2 class="h2">
-                        Lista de Atletas Cadastrados
+                        Lista de Eventos Cadastrados
                         
                     <img src=@{StaticR imgs_boraJogar_jpg} id="end"> 
         <table class="table">
@@ -185,17 +185,22 @@ getTodosEventosR = do
                 
             <tbody>
                 $forall (Entity evid evento) <- eventos
-                 <tr>
-                     <td>
-                         #{eventoNome evento}
-                    <td>
-                        #{eventoHora evento}
-                    <td>
-                        Dia
-                    <td>
-                        Lugar
-                    <td>
-                        Atividade
+                    <tr>
+                        <td>
+                            #{eventoNome evento}
+                        <td>
+                            #{eventoHora evento}
+                        <td>
+                            Dia
+                        <td>
+                            Lugar
+                        <td>
+                            Atividade
+            <a href=@{EventoR}>
+                <input type="button" value="Adicionar Evento">
+              
+            <a href=@{HomeLogadoR}>
+                <input type="submit" value="Voltar">
             
         |]
 -- getEventoPerfilR :: EventoId -> Handler Html

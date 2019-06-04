@@ -195,9 +195,11 @@ getTodosAtletasR = do
                             <td>
                                 <form action=@{AtletaApagarR atlid} method=post>
                                     <input type="submit" value="X">
-          <a href=@{AtletaR}>
-            <input type="button" value="Adicionar ATLETA">
+                <a href=@{AtletaR}>
+                    <input type="button" value="Adicionar Atleta">
               
+                <a href=@{HomeLogadoR}>
+                    <input type="submit" value="Voltar">
         |]
     
     

@@ -89,16 +89,12 @@ getLoginR = do
                         Entre com seus dados para logar
                         
                     <img src=@{StaticR imgs_boraJogar_jpg} id="end">  
-                    
-                <a href=@{HomeLogadoR}>
-                    <input type="submit" value="Voltar">
-
                         
             <br>
             <br>
             <br>
             
-                <a href=@{HomeLogadoR}>
+                <a href=@{HomeR}>
                     <input type="submit" value="Voltar">
 
                 <div id="divExterna">

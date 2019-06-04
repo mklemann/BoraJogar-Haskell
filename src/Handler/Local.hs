@@ -99,7 +99,7 @@ getLocalR = do
                     <div id="divCentral">
                         <div class="card" style="width: 230px; height: 300px;">
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Entre com seus dados!
+                                <li class="list-group-item">Entre com os dados do local!
                                     <form action=@{LocalR} method=post>
                                         ^{widget}
                                         <input type="submit" value="cadastrar">
@@ -182,15 +182,16 @@ getTodosLocaisR = do
             }
         |]
         
-        [whamlet |
-              <a href=@{HomeLogadoR}>
+        [whamlet|
+            
+            <a href=@{HomeLogadoR}>
                 <div class="container">
-                        <img src=@{StaticR imgs_boraJogar_jpg} id="init">
+                    <img src=@{StaticR imgs_boraJogar_jpg} id="init">
                 
-                        <h2 class="h2">
-                            Cadastro de Locais
+                    <h2 class="h2">
+                        Lista de Locais Cadastrados
                     
-                        <img src=@{StaticR imgs_boraJogar_jpg} id="end">  
+                    <img src=@{StaticR imgs_boraJogar_jpg} id="end">  
             <table class="table">
                 <thead class="thead-dark">
                      <tr>
@@ -202,24 +203,28 @@ getTodosLocaisR = do
                              Endereco
             
                 
-            <tbody>
-                $forall (Entity locid local) <- locais
-                <tr>
-                    <td>
-                        <a href=@{LocalPerfilR locid}>
-                         #{localNome local}
-                    <td>
-                         #{localDescricao local}
-                    <td>
-                        #{localEndereco local}
-                    <td>
-                        <a href=@{LocalAlterarR locid}>
-                        Editar
-                    <td>
-                        <form action=@{LocalApagarR locid} method=post>
-                            <input type="submit" value="X">
-        
-        
+                <tbody>
+                    $forall (Entity locid local) <- locais
+                        <tr>
+                            <td>
+                                <a href=@{LocalPerfilR locid}>
+                                    #{localNome local}
+                            <td>
+                                #{localDescricao local}
+                            <td>
+                                #{localEndereco local}
+                            <td>
+                                <a href=@{LocalAlterarR locid}>
+                                    Editar
+                            <td>
+                                <form action=@{LocalApagarR locid} method=post>
+                                    <input type="submit" value="X">
+                            
+                <a href=@{LocalR}>
+                    <input type="button" value="Adicionar Local">
+              
+                <a href=@{HomeLogadoR}>
+                    <input type="submit" value="Voltar">
         |]
         
         
