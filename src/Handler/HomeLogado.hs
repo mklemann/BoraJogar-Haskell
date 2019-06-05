@@ -9,6 +9,7 @@ module Handler.HomeLogado where
 import Import
 import Database.Persist.Postgresql
 
+
 -- SHAKESPEAREAN TEMPLATES
 -- whamlet => html
 -- julius => javascript
@@ -17,7 +18,10 @@ getHomeLogadoR :: Handler Html
 getHomeLogadoR = do
     sess <- lookupSession "_ID"
     
-    eventos <- runDB $ selectList [] [Asc EventoNome]
+    eventos <- runDB $ rawSql
+        "SELECT ??,??,?? FROM Evento, Esporte, Local WHERE Evento.espid=Esporte.id AND Evento.localid=Local.id" []
+        
+            
     
     defaultLayout $ do
         -- pasta: static/css/bootstrap.css
@@ -117,8 +121,6 @@ getHomeLogadoR = do
             <br>
             <table class="table">
                  <thead class="thead-dark">
-                    <h3 style="text-align: center; ">
-                        Lista de Eventos
                     <tr>
                         <th scope="col">
                              Nome
@@ -132,7 +134,7 @@ getHomeLogadoR = do
                             Esporte
                 
                  <tbody>
-                    $forall (Entity evid evento) <- eventos
+                    $forall (Entity evid evento,Entity _ esporte, Entity _ local) <- eventos
                         <tr>
                             <td>
                                 #{eventoNome evento}
@@ -141,9 +143,9 @@ getHomeLogadoR = do
                             <td>
                                 Dia
                             <td>
-                                Lugar
+                                #{localNome local}
                             <td>
-                                Atividade
+                                #{esporteNome esporte}
         |]
         
         
