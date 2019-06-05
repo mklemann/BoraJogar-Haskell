@@ -72,6 +72,7 @@ getHomeLogadoR = do
             table{
                 align:center;
             }
+          
         |]
         
         [whamlet|
@@ -119,8 +120,11 @@ getHomeLogadoR = do
             $nothing  
             <br>
             <br>
+            
             <table class="table">
                  <thead class="thead-dark">
+                    <h3 style="text-align: center; ">
+                        Lista de Eventos	                        
                     <tr>
                         <th scope="col">
                              Nome
@@ -141,7 +145,7 @@ getHomeLogadoR = do
                             <td>
                                 #{eventoHora evento}
                             <td>
-                                Dia
+                                DATA
                             <td>
                                 #{localNome local}
                             <td>
