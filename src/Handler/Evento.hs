@@ -131,7 +131,8 @@ postEventoR = do
 
 getTodosEventosR :: Handler Html
 getTodosEventosR = do 
-    eventos <- runDB $ selectList [] [Asc EventoNome]
+    eventos <- runDB $ rawSql
+        "SELECT ??,??,?? FROM Evento, Esporte, Local WHERE Evento.espid=Esporte.id AND Evento.localid=Local.id" []
     defaultLayout $ do
         addStylesheet $ StaticR css_bootstrap_css
             
@@ -161,11 +162,11 @@ getTodosEventosR = do
             }
         |]
         [whamlet|
-         <a href=@{HomeLogadoR}>            
+        <a href=@{HomeLogadoR}>            
                <div class="container">
                     <img src=@{StaticR imgs_boraJogar_jpg} id="init">
                     
-                     <h2 class="h2">
+                    <h2 class="h2">
                         Lista de Eventos Cadastrados
                         
                     <img src=@{StaticR imgs_boraJogar_jpg} id="end"> 
@@ -184,7 +185,7 @@ getTodosEventosR = do
                         Esporte
                 
             <tbody>
-                $forall (Entity evid evento) <- eventos
+                $forall (Entity evid evento,Entity _ esporte,Entity _ local) <- eventos
                     <tr>
                         <td>
                             #{eventoNome evento}
@@ -193,9 +194,9 @@ getTodosEventosR = do
                         <td>
                             Dia
                         <td>
-                            Lugar
+                            #{localNome local}
                         <td>
-                            Atividade
+                            #{esporteNome esporte}
             <a href=@{EventoR}>
                 <input type="button" value="Adicionar Evento">
               
