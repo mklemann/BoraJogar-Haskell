@@ -139,80 +139,109 @@ getTodosEventosR = do
         "SELECT ??,??,?? FROM Evento, Esporte, Local WHERE Evento.espid=Esporte.id AND Evento.localid=Local.id" []
     defaultLayout $ do
         addStylesheet $ StaticR css_bootstrap_css
-            
+        
         toWidget [lucius|
             body {
                 background: rgb(173,216,230);
                 background: linear-gradient(90deg, rgba(173,216,230,1) 0%, rgba(255,255,255,0) 20%, rgba(242,249,251,1) 80%, rgba(173,216,230,1) 100%);  
             }
-         
+            
+            #divCentral {
+                margin: 0 auto;
+                width: 300px;
+                height: 300px;
+                border: 1px;
+            }
+            #divExterna{
+                align-items: center;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+             div{
+                align-items: center;
+                display: flex;
+                flex-direction:row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
             #init{
                 float:left;
                 widght:100px;
                 height:150px;
             }
-        
+          
+            ul{
+                display: flex;            
+                flex-direction:row; 
+            }
+            
+            span{
+                align: center;
+            }
+          
             #end{
                 float: right;
                 widght:100px;
                 height:150px;
             }
-            table{
-                align:center;
+            input{
+                margin: 10px;
             }
-            a{
-                align:center;
-                flex:center;
-            }
+            
         |]
         [whamlet|
-        <a href=@{HomeLogadoR}>            
-               <div class="container">
-                    <img src=@{StaticR imgs_boraJogar_jpg} id="init">
+            <a href=@{HomeLogadoR}>            
+                        <div class="container">
+                            <h1 class>
+                                <img src=@{StaticR imgs_boraJogar_jpg} id="init">
                     
-                    <h2 class="h2">
-                        Lista de Eventos Cadastrados
+                                <h2 class="h2">
+                                    Lista de Eventos Cadastrados
                         
-                    <img src=@{StaticR imgs_boraJogar_jpg} id="end"> 
-        <table class="table">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">
-                        Nome
-                    <th scope="col">
-                        Hora
-                    <th scope="col">
-                        Data
-                    <th scope="col">
-                        Local
-                    <th scope="col">
-                        Esporte
-                
-            <tbody>
-                $forall (Entity evid evento,Entity _ esporte,Entity _ local) <- eventos
+                            <img src=@{StaticR imgs_boraJogar_jpg} id="end"> 
+            <table class="table">
+                <thead class="thead-dark">
                     <tr>
-                        <td>
-                            <a href=@{EventoPerfilR evid}>
-                                #{eventoNome evento}
-                        <td>
-                            #{eventoHora evento}
-                        <td>
-                            05/06/2019
-                        <td>
-                            #{localNome local}
-                        <td>
-                            #{esporteNome esporte}
-                        <td>
-                            <a href=@{EventoAlterarR evid}>
-                                Editar
-                        <td>
-                            <form action=@{EventoApagarR evid} method=post>
-                                <input type="submit" value="X">
-            <a href=@{EventoR}>
-                <input type="button" value="Adicionar Evento" class="btn btn-primary mb-2">
+                        <th scope="col">
+                            Nome
+                        <th scope="col">
+                            Hora
+                        <th scope="col">
+                            Data
+                        <th scope="col">
+                            Local
+                        <th scope="col">
+                            Esporte
+                
+                <tbody>
+                    $forall (Entity evid evento,Entity _ esporte,Entity _ local) <- eventos
+                        <tr>
+                            <td>
+                                <a href=@{EventoPerfilR evid}>
+                                    #{eventoNome evento}
+                            <td>
+                                #{eventoHora evento}
+                            <td>
+                                05/06/2019
+                            <td>
+                                #{localNome local}
+                            <td>
+                                #{esporteNome esporte}
+                            <td>
+                                <a href=@{EventoAlterarR evid}>
+                                    Editar
+                            <td>
+                                <form action=@{EventoApagarR evid} method=post>
+                                    <input type="submit" value="X">
+                <a href=@{EventoR}>
+                    <input type="button" value="Adicionar Evento" class="btn btn-primary mb-2">
               
-            <a href=@{HomeLogadoR}>
-                <input type="submit" value="Voltar" class="btn btn-primary mb-2">
+                <a href=@{HomeLogadoR}>
+                    <input type="submit" value="Voltar" class="btn btn-primary mb-2">
             
         |]
 getEventoPerfilR :: EventoId -> Handler Html
@@ -277,7 +306,7 @@ getEventoPerfilR evid = do
         |]
         [whamlet|
             <a href=@{HomeLogadoR}>
-                <div class="container">
+                        <div class="container">
                             <h1 class>
                                 <img src=@{StaticR imgs_boraJogar_jpg} id="init">
                     

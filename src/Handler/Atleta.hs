@@ -134,36 +134,64 @@ getTodosAtletasR = do
                 background: rgb(173,216,230);
                 background: linear-gradient(90deg, rgba(173,216,230,1) 0%, rgba(255,255,255,0) 20%, rgba(242,249,251,1) 80%, rgba(173,216,230,1) 100%);  
             }
-         
+            
+            #divCentral {
+                margin: 0 auto;
+                width: 300px;
+                height: 300px;
+                border: 1px;
+            }
+            #divExterna{
+                align-items: center;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+             div{
+                align-items: center;
+                display: flex;
+                flex-direction:row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
             #init{
                 float:left;
                 widght:100px;
                 height:150px;
             }
-        
+          
+            ul{
+                display: flex;            
+                flex-direction:row; 
+            }
+            
+            span{
+                align: center;
+            }
+          
             #end{
                 float: right;
                 widght:100px;
                 height:150px;
             }
-            table{
-                align:center;
+            input{
+                margin: 10px;
             }
-            a{
-                align:center;
-                flex:center;
-            }
+            
         |]
         [whamlet|
-         
             <a href=@{HomeLogadoR}>            
-               <div class="container">
-                    <img src=@{StaticR imgs_boraJogar_jpg} id="init">
+                        <div class="container">
+                            <h1 class>
+                                <img src=@{StaticR imgs_boraJogar_jpg} id="init">
                     
-                     <h2 class="h2">
-                        Lista de Atletas Cadastrados
+                                <h2 class="h2">
+                                    Lista de Atletas Cadastrados
                         
-                    <img src=@{StaticR imgs_boraJogar_jpg} id="end">  
+                            <img src=@{StaticR imgs_boraJogar_jpg} id="end">  
             <table class="table">
                 <thead class="thead-dark">
                     <tr>
