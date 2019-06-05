@@ -92,8 +92,6 @@ getLocalR = do
             <br>
             <br>
             
-                
-                   
 
                 <div id="divExterna">
                     <div id="divCentral">
@@ -103,6 +101,9 @@ getLocalR = do
                                     <form action=@{LocalR} method=post>
                                         ^{widget}
                                         <input type="submit" value="cadastrar">
+                                        <a href=@{HomeLogadoR}>
+                                            <input value="Voltar" class="btn btn-primary mb-2">
+
 
                 
         |]

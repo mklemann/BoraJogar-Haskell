@@ -93,9 +93,7 @@ getLoginR = do
             <br>
             <br>
             <br>
-            
-                <a href=@{HomeR}>
-                    <input type="submit" value="Voltar">
+
 
                 <div id="divExterna">
                     <div id="divCentral">
@@ -105,7 +103,8 @@ getLoginR = do
                                     <form action=@{LoginR} method=post>
                                         ^{widget}
                                         <input type="submit" value="entrar" class="btn btn-primary mb-2">
-        
+                                        <a href=@{HomeR}>
+                                            <input type="submit" value="Voltar" class="btn btn-primary mb-2">
         |]
 
 

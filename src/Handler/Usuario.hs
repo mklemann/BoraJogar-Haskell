@@ -93,8 +93,6 @@ getUsuarioR = do
             <br>
             <br>
         
-                <a href=@{HomeR}>
-                    <input type="submit" value="Voltar">
 
                 <div id="divExterna">
                     <div id="divCentral">
@@ -103,7 +101,10 @@ getUsuarioR = do
                                 <li class="list-group-item">Entre com seus dados!
                                     <form action=@{UsuarioR} method=post>
                                         ^{widget}
-                                        <input type="submit" value="cadastrar">
+                                        <input type="submit" value="cadastrar" class="btn btn-primary mb-2">
+                                        <a href=@{HomeR}>
+                                            <input value="Voltar" class="btn btn-primary mb-2">
+
         |]
 
 postUsuarioR :: Handler Html

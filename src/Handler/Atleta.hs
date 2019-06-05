@@ -93,8 +93,6 @@ getAtletaR = do
             <br>
             <br>
             <br>
-                <a href=@{HomeLogadoR}>
-                    <input type="submit" value="Voltar">
            
                 <div id="divExterna">
                     <div id="divCentral">
@@ -105,7 +103,9 @@ getAtletaR = do
                                         <div class="form-group row">
                                             ^{widget}
                                             <input type="submit" value="Cadastrar" class="btn btn-primary mb-2">
-                
+                                        <a href=@{HomeLogadoR}>
+                                            <input value="Voltar" class="btn btn-primary mb-2">
+
         |]
 
 postAtletaR :: Handler Html
@@ -196,7 +196,7 @@ getTodosAtletasR = do
                                 <form action=@{AtletaApagarR atlid} method=post>
                                     <input type="submit" value="X">
                 <a href=@{AtletaR}>
-                    <input type="button" value="Adicionar Atleta">
+                    <input type="button" value="Adicionar ATLETA">
               
                 <a href=@{HomeLogadoR}>
                     <input type="submit" value="Voltar">

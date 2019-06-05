@@ -92,10 +92,6 @@ getEsporteR = do
             <br>
             <br>
             
-               
-                    
-
-            
                 <div id="divExterna">
                     <div id="divCentral">
                         <div class="card" style="width: 230px; height: 300px;">
@@ -103,8 +99,10 @@ getEsporteR = do
                                 <li class="list-group-item">Entre com os dados do esporte!
                                     <form action=@{EsporteR} method=post>
                                         ^{widget}
-                                        <input type="submit" value="cadastrar">
-                
+                                        <input type="submit" value="cadastrar" class="btn btn-primary mb-2">
+                                        <a href=@{HomeLogadoR}>
+                                            <input value="Voltar" class="btn btn-primary mb-2">
+
         |]
 
 postEsporteR :: Handler Html

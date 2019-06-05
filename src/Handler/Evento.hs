@@ -99,9 +99,7 @@ getEventoR = do
             <br>
             <br>
             <br>
-                <a href=@{HomeLogadoR}>
-                    <input type="submit" value="Voltar">
-           
+
                 <div id="divExterna">
                     <div id="divCentral">
                         <div class="card" style="width: 250px; height: 400px;">
@@ -111,6 +109,8 @@ getEventoR = do
                                         <div class="form-group row">
                                             ^{widget}
                                             <input type="submit" value="Cadastrar" class="btn btn-primary mb-2">
+                                            <a href=@{HomeLogadoR}>
+                                                <input value="Voltar" class="btn btn-primary mb-2">
         |]
 
 postEventoR :: Handler Html
