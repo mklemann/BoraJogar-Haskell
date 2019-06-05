@@ -221,8 +221,7 @@ getTodosEventosR = do
                     $forall (Entity evid evento,Entity _ esporte,Entity _ local) <- eventos
                         <tr>
                             <td>
-                                <a href=@{EventoPerfilR evid}>
-                                    #{eventoNome evento}
+                                #{eventoNome evento}
                             <td>
                                 #{eventoHora evento}
                             <td>
@@ -244,91 +243,91 @@ getTodosEventosR = do
                     <input type="submit" value="Voltar" class="btn btn-primary mb-2">
             
         |]
-getEventoPerfilR :: EventoId -> Handler Html
-getEventoPerfilR evid = do 
-    evento <- runDB $ rawSql
-        "SELECT ??,??,?? FROM Evento, Esporte, Local WHERE Evento.espid=Esporte.id AND Evento.localid=Local.id" []
-    defaultLayout $ do
-        addStylesheet $ StaticR css_bootstrap_css
+-- getEventoPerfilR :: EventoId -> Handler Html
+-- getEventoPerfilR evid = do 
+--     evento <- runDB $ rawSql
+--         "SELECT ??,??,?? FROM Evento, Esporte, Local WHERE Evento.espid=Esporte.id AND Evento.localid=Local.id" []
+--     defaultLayout $ do
+--         addStylesheet $ StaticR css_bootstrap_css
         
-        toWidget [lucius|
-            body {
-                background: rgb(173,216,230);
-                background: linear-gradient(90deg, rgba(173,216,230,1) 0%, rgba(255,255,255,0) 20%, rgba(242,249,251,1) 80%, rgba(173,216,230,1) 100%);  
-            }
+--         toWidget [lucius|
+--             body {
+--                 background: rgb(173,216,230);
+--                 background: linear-gradient(90deg, rgba(173,216,230,1) 0%, rgba(255,255,255,0) 20%, rgba(242,249,251,1) 80%, rgba(173,216,230,1) 100%);  
+--             }
             
-            #divCentral {
-                margin: 0 auto;
-                width: 300px;
-                height: 300px;
-                border: 1px;
-            }
-            #divExterna{
-                align-items: center;
-                display: flex;
-                flex-direction: row;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
+--             #divCentral {
+--                 margin: 0 auto;
+--                 width: 300px;
+--                 height: 300px;
+--                 border: 1px;
+--             }
+--             #divExterna{
+--                 align-items: center;
+--                 display: flex;
+--                 flex-direction: row;
+--                 flex-wrap: wrap;
+--                 justify-content: center;
+--             }
             
-             div{
-                align-items: center;
-                display: flex;
-                flex-direction:row;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
+--              div{
+--                 align-items: center;
+--                 display: flex;
+--                 flex-direction:row;
+--                 flex-wrap: wrap;
+--                 justify-content: center;
+--             }
             
-            #init{
-                float:left;
-                widght:100px;
-                height:150px;
-            }
+--             #init{
+--                 float:left;
+--                 widght:100px;
+--                 height:150px;
+--             }
           
-            ul{
-                display: flex;            
-                flex-direction:row; 
-            }
+--             ul{
+--                 display: flex;            
+--                 flex-direction:row; 
+--             }
             
-            span{
-                align: center;
-            }
+--             span{
+--                 align: center;
+--             }
           
-            #end{
-                float: right;
-                widght:100px;
-                height:150px;
-            }
-            input{
-                margin: 10px;
-            }
+--             #end{
+--                 float: right;
+--                 widght:100px;
+--                 height:150px;
+--             }
+--             input{
+--                 margin: 10px;
+--             }
             
-        |]
-        [whamlet|
-            <a href=@{HomeLogadoR}>
-                        <div class="container">
-                            <h1 class>
-                                <img src=@{StaticR imgs_boraJogar_jpg} id="init">
+--         |]
+--         [whamlet|
+--             <a href=@{HomeLogadoR}>
+--                         <div class="container">
+--                             <h1 class>
+--                                 <img src=@{StaticR imgs_boraJogar_jpg} id="init">
                     
-                                <h2 class="h2">
-                                    Evento Selecionado
+--                                 <h2 class="h2">
+--                                     Evento Selecionado
                         
-                            <img src=@{StaticR imgs_boraJogar_jpg} id="end">
-            <a href=@{TodosEventosR}>
-                <input type="submit" value="Voltar" class="btn btn-primary mb-2">
-            <tbody>
-                $forall (Entity evid evento,Entity _ esporte,Entity _ local) <- evento
-                    <h1 style="text-align: center;">
-                        Nome #{eventoNome evento}
-                    <div>
-                        Esporte: #{esporteNome esporte}
-                    <div>
-                        Local: #{localNome local}
-                    <div>
-                        Hora: #{eventoHora evento}
-                    <div>
-                        05/06/2019
-        |]
+--                             <img src=@{StaticR imgs_boraJogar_jpg} id="end">
+--             <a href=@{TodosEventosR}>
+--                 <input type="submit" value="Voltar" class="btn btn-primary mb-2">
+--             <tbody>
+--                 $forall (Entity evid evento,Entity _ esporte,Entity _ local) <- evento
+--                     <h1 style="text-align: center;">
+--                         Nome #{eventoNome evento}
+--                     <div>
+--                         Esporte: #{esporteNome esporte}
+--                     <div>
+--                         Local: #{localNome local}
+--                     <div>
+--                         Hora: #{eventoHora evento}
+--                     <div>
+--                         05/06/2019
+--         |]
         
 postEventoApagarR :: EventoId -> Handler Html
 postEventoApagarR evid = do
