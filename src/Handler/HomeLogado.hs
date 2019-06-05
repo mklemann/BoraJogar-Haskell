@@ -118,8 +118,6 @@ getHomeLogadoR = do
                 <form action=@{LogoutR} method=post>
                     <input type="submit" value="Sair" class="btn btn-primary mb-2">
             $nothing  
-            <br>
-            <br>
             
             <table class="table">
                  <thead class="thead-dark">
