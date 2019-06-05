@@ -217,9 +217,9 @@ getTodosEsportesR = do
                                 <form action=@{EsporteApagarR espid} method=post>
                                     <input type="submit" value="X">
                 <a href=@{EsporteR}>
-                    <input type="button" value="Adicionar Esporte">
+                    <input type="button" value="Adicionar Esporte" class="btn btn-primary mb-2">
                 <a href=@{HomeLogadoR}>
-                    <input type="submit" value="Voltar">
+                    <input type="submit" value="Voltar" class="btn btn-primary mb-2">
         |]
 
 getEsportePerfilR :: EsporteId -> Handler Html
@@ -288,10 +288,12 @@ getEsportePerfilR espid = do
                                 <img src=@{StaticR imgs_boraJogar_jpg} id="init">
                     
                                 <h2 class="h2">
-                                    Cadastro de Esportes
+                                    Esporte Selecionado
                         
-                            <img src=@{StaticR imgs_boraJogar_jpg} id="end"> 
-            <h2>
+                            <img src=@{StaticR imgs_boraJogar_jpg} id="end">
+            <a href=@{TodosEsportesR}>
+                <input type="submit" value="Voltar" class="btn btn-primary mb-2">
+            <h1 style="text-align: center;">
                 Nome: #{esporteNome esporte}
             <div>
                 Descricao: #{esporteDescricao esporte}
@@ -310,12 +312,87 @@ getEsporteAlterarR espid = do
     esporte <- runDB $ get404 espid
     (widget,enctype) <- generateFormPost (formEsporte $ Just esporte)
     defaultLayout $ do
+        addStylesheet $ StaticR css_bootstrap_css
+        
+        toWidget [lucius|
+            body {
+                background: rgb(173,216,230);
+                background: linear-gradient(90deg, rgba(173,216,230,1) 0%, rgba(255,255,255,0) 20%, rgba(242,249,251,1) 80%, rgba(173,216,230,1) 100%);  
+            }
+            
+            #divCentral {
+                margin: 0 auto;
+                width: 300px;
+                height: 300px;
+                border: 1px;
+            }
+            #divExterna{
+                align-items: center;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+             div{
+                align-items: center;
+                display: flex;
+                flex-direction:row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            #init{
+                float:left;
+                widght:100px;
+                height:150px;
+            }
+          
+            ul{
+                display: flex;            
+                flex-direction:row; 
+            }
+            
+            span{
+                align: center;
+            }
+          
+            #end{
+                float: right;
+                widght:100px;
+                height:150px;
+            }
+            input{
+                margin: 10px;
+            }
+            
+        |]
         [whamlet|
             <a href=@{HomeLogadoR}>
-                <input type="submit" value="Voltar">
-            <form action=@{EsporteAlterarR espid} method=post>
-                ^{widget}
-                <input type="submit" value="Atualizar">
+                    <div class="container">
+                        <img src=@{StaticR imgs_boraJogar_jpg} id="init">
+                
+                        <h2 class="h2">
+                            Atualizar Esporte
+                    
+                        <img src=@{StaticR imgs_boraJogar_jpg} id="end">  
+
+                    
+            <br>
+            <br>
+            <br>
+            
+
+                <div id="divExterna">
+                    <div id="divCentral">
+                        <div class="card" style="width: 230px; height: 300px;">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Entre com os dados do esporte!
+                                    <form action=@{EsporteR} method=post>
+                                        ^{widget}
+                                        <input type="submit" value="Atualizar" class="btn btn-primary mb-2">
+                                        <a href=@{TodosEsportesR}>
+                                            <input value="Voltar" class="btn btn-primary mb-2">
         |]
 
 postEsporteAlterarR :: EsporteId -> Handler Html

@@ -116,7 +116,7 @@ getHomeLogadoR = do
             $maybe _ <- sess 
                        
                 <form action=@{LogoutR} method=post>
-                    <input type="submit" value="Sair">
+                    <input type="submit" value="Sair" class="btn btn-primary mb-2">
             $nothing  
             <br>
             <br>
@@ -124,7 +124,7 @@ getHomeLogadoR = do
             <table class="table">
                  <thead class="thead-dark">
                     <h3 style="text-align: center; ">
-                        Lista de Eventos	                        
+                        Lista de Eventos de Hoje	                        
                     <tr>
                         <th scope="col">
                              Nome
@@ -145,7 +145,7 @@ getHomeLogadoR = do
                             <td>
                                 #{eventoHora evento}
                             <td>
-                                DATA
+                                05/06/2019
                             <td>
                                 #{localNome local}
                             <td>

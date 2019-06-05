@@ -35,4 +35,7 @@
 
 /evento EventoR  GET POST
 /eventos TodosEventosR GET
+/evento/#EventoId/perfil EventoPerfilR GET
+/evento/#EventoId/apagar EventoApagarR POST
+/evento/#EventoId/alterar EventoAlterarR GET POST
 

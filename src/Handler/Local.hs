@@ -101,7 +101,7 @@ getLocalR = do
                                     <form action=@{LocalR} method=post>
                                         ^{widget}
                                         <input type="submit" value="cadastrar" class="btn btn-primary mb-2">
-                                        <a href=@{LocalR}>
+                                        <a href=@{HomeLogadoR}>
                                             <input value="Voltar" class="btn btn-primary mb-2">
 
 
@@ -222,10 +222,10 @@ getTodosLocaisR = do
                                     <input type="submit" value="X">
                             
                 <a href=@{LocalR}>
-                    <input type="button" value="Adicionar Local">
+                    <input type="button" value="Adicionar Local" class="btn btn-primary mb-2">
               
                 <a href=@{HomeLogadoR}>
-                    <input type="submit" value="Voltar">
+                    <input type="submit" value="Voltar" class="btn btn-primary mb-2">
         |]
         
         
@@ -299,8 +299,9 @@ getLocalPerfilR locid = do
                             Local Selecionado
                     
                         <img src=@{StaticR imgs_boraJogar_jpg} id="end">  
-
-            <h1>
+            <a href=@{TodosLocaisR}>
+                <input type="submit" value="Voltar" class="btn btn-primary mb-2">
+            <h1 style="text-align: center;">
                 Nome: #{localNome local}
             <div>
                 Descricao: #{localDescricao local}
@@ -399,7 +400,7 @@ getLocalAlterarR locid = do
                                     <form action=@{LocalR} method=post>
                                         ^{widget}
                                         <input type="submit" value="Atualizar" class="btn btn-primary mb-2">
-                                        <a href=@{LocalR}>
+                                        <a href=@{TodosLocaisR}>
                                             <input value="Voltar" class="btn btn-primary mb-2">
 
 

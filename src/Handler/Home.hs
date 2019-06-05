@@ -86,17 +86,17 @@ getHomeR = do
                        <br>
                             <li class="list-group-item">
                                 <a href=@{UsuarioR}>
-                                    <button>
+                                    <button class="btn btn-primary mb-2">
                                         Cadastrar Novo Usuario
                         $maybe _ <- sess 
                             <li class="list-group-item">
                                 <form action=@{LogoutR} method=post>
-                                    <input type="submit" value="Sair">
+                                    <input type="submit" value="Sair" class="btn btn-primary mb-2">
                         $nothing
                         
                             <li class="list-group-item">
                                 <a href=@{LoginR}>
-                                    <button>
+                                    <button class="btn btn-primary mb-2">
                                         Entrar
                         
         |]

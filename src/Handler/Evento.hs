@@ -108,9 +108,13 @@ getEventoR = do
                                     <form action=@{EventoR} method=post class="form-inline">
                                         <div class="form-group row">
                                             ^{widget}
-                                            <input type="submit" value="Cadastrar" class="btn btn-primary mb-2">
+                                            <input type="submit" value="Cadastrar" style="text-align: center;" class="btn btn-primary mb-2">
                                             <a href=@{HomeLogadoR}>
-                                                <input value="Voltar" class="btn btn-primary mb-2">
+                                                <input value="Voltar" style="text-align: center;" class="btn btn-primary mb-2">
+                                            <a href=@{LocalR}>
+                                                <input type="button" value="Adicionar Local" style="text-align: center;" class="btn btn-primary mb-2">
+                                            <a href=@{EsporteR}>
+                                                <input type="button" value="Adicionar Esporte" style="text-align: center;" class="btn btn-primary mb-2">
         |]
 
 postEventoR :: Handler Html
@@ -174,7 +178,7 @@ getTodosEventosR = do
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">
-                         Nome
+                        Nome
                     <th scope="col">
                         Hora
                     <th scope="col">
@@ -188,67 +192,219 @@ getTodosEventosR = do
                 $forall (Entity evid evento,Entity _ esporte,Entity _ local) <- eventos
                     <tr>
                         <td>
-                            #{eventoNome evento}
+                            <a href=@{EventoPerfilR evid}>
+                                #{eventoNome evento}
                         <td>
                             #{eventoHora evento}
                         <td>
-                            Dia
+                            05/06/2019
                         <td>
                             #{localNome local}
                         <td>
                             #{esporteNome esporte}
+                        <td>
+                            <a href=@{EventoAlterarR evid}>
+                                Editar
+                        <td>
+                            <form action=@{EventoApagarR evid} method=post>
+                                <input type="submit" value="X">
             <a href=@{EventoR}>
-                <input type="button" value="Adicionar Evento">
+                <input type="button" value="Adicionar Evento" class="btn btn-primary mb-2">
               
             <a href=@{HomeLogadoR}>
-                <input type="submit" value="Voltar">
+                <input type="submit" value="Voltar" class="btn btn-primary mb-2">
             
         |]
--- getEventoPerfilR :: EventoId -> Handler Html
--- getEventoPerfilR evid = do 
---     evento <- runDB $ get404 evid
---     defaultLayout $ do 
---         [whamlet|
---             <a href=@{HomeLogadoR}>
---                 <input type="submit" value="Voltar">
---             <h1>
---                 Nome #{eventoNome evento}
---             <div>
---                 Esporte: #{eventoEspid evento}
---             <div>
---                 Local: #{eventoLocalid evento}
---             <div>
---                 Hora: #{eventoHora evento}
---             <div>
---                 Data: #{eventoData evento}
---         |]
--- postEventoApagarR :: EventoId -> Handler Html
--- postEventoApagarR evid = do
---     runDB $ get404 evid
---     runDB $ delete evid
---     redirect TodosEventosR
+getEventoPerfilR :: EventoId -> Handler Html
+getEventoPerfilR evid = do 
+    evento <- runDB $ rawSql
+        "SELECT ??,??,?? FROM Evento, Esporte, Local WHERE Evento.espid=Esporte.id AND Evento.localid=Local.id" []
+    defaultLayout $ do
+        addStylesheet $ StaticR css_bootstrap_css
+        
+        toWidget [lucius|
+            body {
+                background: rgb(173,216,230);
+                background: linear-gradient(90deg, rgba(173,216,230,1) 0%, rgba(255,255,255,0) 20%, rgba(242,249,251,1) 80%, rgba(173,216,230,1) 100%);  
+            }
+            
+            #divCentral {
+                margin: 0 auto;
+                width: 300px;
+                height: 300px;
+                border: 1px;
+            }
+            #divExterna{
+                align-items: center;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+             div{
+                align-items: center;
+                display: flex;
+                flex-direction:row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            #init{
+                float:left;
+                widght:100px;
+                height:150px;
+            }
+          
+            ul{
+                display: flex;            
+                flex-direction:row; 
+            }
+            
+            span{
+                align: center;
+            }
+          
+            #end{
+                float: right;
+                widght:100px;
+                height:150px;
+            }
+            input{
+                margin: 10px;
+            }
+            
+        |]
+        [whamlet|
+            <a href=@{HomeLogadoR}>
+                <div class="container">
+                            <h1 class>
+                                <img src=@{StaticR imgs_boraJogar_jpg} id="init">
+                    
+                                <h2 class="h2">
+                                    Evento Selecionado
+                        
+                            <img src=@{StaticR imgs_boraJogar_jpg} id="end">
+            <a href=@{TodosEventosR}>
+                <input type="submit" value="Voltar" class="btn btn-primary mb-2">
+            <tbody>
+                $forall (Entity evid evento,Entity _ esporte,Entity _ local) <- evento
+                    <h1 style="text-align: center;">
+                        Nome #{eventoNome evento}
+                    <div>
+                        Esporte: #{esporteNome esporte}
+                    <div>
+                        Local: #{localNome local}
+                    <div>
+                        Hora: #{eventoHora evento}
+                    <div>
+                        05/06/2019
+        |]
+        
+postEventoApagarR :: EventoId -> Handler Html
+postEventoApagarR evid = do
+    runDB $ get404 evid
+    runDB $ delete evid
+    redirect TodosEventosR
 
--- getEventoAlterarR :: EventoId -> Handler Html
--- getEventoAlterarR evid = do
---     evento <- runDB $ get404 evid
---     (widget,enctype) <- generateFormPost (formEvento $ Just evento)
---     defaultLayout $ do
---         [whamlet|
---             <form action=@{EventoAlterarR evid} method=post>
---                 ^{widget}
---                 <input type="submit" value="Atualizar">
---         |]
+getEventoAlterarR :: EventoId -> Handler Html
+getEventoAlterarR evid = do
+    evento <- runDB $ get404 evid
+    (widget,enctype) <- generateFormPost (formEvento $ Just evento)
+    defaultLayout $ do
+        addStylesheet $ StaticR css_bootstrap_css
+        
+        toWidget [lucius|
+            body {
+                background: rgb(173,216,230);
+                background: linear-gradient(90deg, rgba(173,216,230,1) 0%, rgba(255,255,255,0) 20%, rgba(242,249,251,1) 80%, rgba(173,216,230,1) 100%);  
+            }
+            
+            #divCentral {
+                margin: 0 auto;
+                width: 300px;
+                height: 300px;
+                border: 1px;
+            }
+            #divExterna{
+                align-items: center;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+             div{
+                align-items: center;
+                display: flex;
+                flex-direction:row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            #init{
+                float:left;
+                widght:100px;
+                height:150px;
+            }
+          
+            ul{
+                display: flex;            
+                flex-direction:row; 
+            }
+            
+            span{
+                align: center;
+            }
+          
+            #end{
+                float: right;
+                widght:100px;
+                height:150px;
+            }
+            input{
+                margin: 10px;
+            }
+            
+        |]
+        [whamlet|
+            <a href=@{HomeLogadoR}>
+                    <div class="container">
+                        <img src=@{StaticR imgs_boraJogar_jpg} id="init">
+                
+                        <h2 class="h2">
+                            Atualizar Evento
+                    
+                        <img src=@{StaticR imgs_boraJogar_jpg} id="end">  
 
--- postEventoAlterarR :: EventoId -> Handler Html
--- postEventoAlterarR evid = do
---     evento <- runDB $ get404 evid
---     -- LE DO FORM
---     ((res,_),_) <- runFormPost (formEvento $ Just evento) 
---     case res of
---         FormSuccess eventoNovo -> do
---             runDB $ replace evid eventoNovo
---             redirect TodosEventosR
---         _ -> redirect HomeLogadoR
+                    
+            <br>
+            <br>
+            <br>
+            
+
+                <div id="divExterna">
+                    <div id="divCentral">
+                        <div class="card" style="width: 230px; height: 300px;">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Entre com os dados do evento!
+                                    <form action=@{EventoR} method=post>
+                                        ^{widget}
+                                        <input type="submit" value="Atualizar" class="btn btn-primary mb-2">
+                                        <a href=@{TodosEventosR}>
+                                            <input value="Voltar" class="btn btn-primary mb-2">
+        |]
+
+postEventoAlterarR :: EventoId -> Handler Html
+postEventoAlterarR evid = do
+    evento <- runDB $ get404 evid
+    -- LE DO FORM
+    ((res,_),_) <- runFormPost (formEvento $ Just evento) 
+    case res of
+        FormSuccess eventoNovo -> do
+            runDB $ replace evid eventoNovo
+            redirect TodosEventosR
+        _ -> redirect HomeLogadoR
 
 -- <tbody>
 --         $forall (Entity evid evento) <- eventos
